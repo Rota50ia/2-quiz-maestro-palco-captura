@@ -1292,66 +1292,86 @@
             document.getElementById(`result-${dominantType}`).classList.add('active');
         }
         
-        // Download lead magnet
+        // Download lead magnet - VERSÃO CORRIGIDA COM DELAY
         function downloadLeadMagnet(type) {
-            console.log('downloadLeadMagnet chamado com tipo:', type);
+            console.log('🚀 downloadLeadMagnet chamado com tipo:', type);
+            
+            // Prevenir ação padrão
+            event.preventDefault();
+            
             // Define lead data
             const leadData = {
-                'D': { name: 'Kit do Conquistador Musical', value: 25.00, neuro: 'adrenaline_testosterone' },
-                'I': { name: 'Guia do Conectado Musical', value: 22.00, neuro: 'dopamine_oxytocin' },
-                'S': { name: 'Plano do Construtor Musical', value: 28.00, neuro: 'serotonin' },
-                'C': { name: 'Sistema do Estrategista Musical', value: 30.00, neuro: 'dopamine_competence' }
+                'conquistador': { name: 'Kit do Conquistador Musical', value: 25.00, neuro: 'adrenaline_testosterone' },
+                'conectado': { name: 'Guia do Conectado Musical', value: 22.00, neuro: 'dopamine_oxytocin' },
+                'construtor': { name: 'Plano do Construtor Musical', value: 28.00, neuro: 'serotonin' },
+                'estrategista': { name: 'Sistema do Estrategista Musical', value: 30.00, neuro: 'dopamine_competence' }
             };
             
-            const currentLead = leadData[type] || leadData['D'];
+            const currentLead = leadData[type] || leadData['conquistador'];
+            console.log('📊 Lead data:', currentLead);
             
-            // Facebook Pixel - Lead Magnet Download
-            fbq('track', 'Lead', {
-                content_name: currentLead.name + ' Download',
-                personality_type: type,
-                neurotransmitter: currentLead.neuro,
-                value: currentLead.value,
-                currency: 'BRL',
-                event_source_url: window.location.href
-            });
-            
-            // Google Analytics
-            gtag('event', 'lead_magnet_download', {
-                'personality_type': type,
-                'magnet_name': `kit_${type}`,
-                'lead_value': currentLead.value,
-                'neurotransmitter': currentLead.neuro
-            });
-            
-            // Google Ads - Lead Generation
-            gtag('event', 'conversion', {
-                'send_to': 'AW-CONVERSION_ID/LEAD_DOWNLOAD_LABEL',
-                'value': currentLead.value,
-                'currency': 'BRL',
-                'personality_type': type
-            });
-            
-            // Redirect to specific form based on type (FLUXO CORRETO: CAPTURA PRIMEIRO)
-            const redirectUrls = {
-                'conquistador': './forms/alto-d-conquistador.html',
-                'conectado': './forms/alto-i-conectado.html', 
-                'construtor': './forms/alto-s-construtor.html',
-                'estrategista': './forms/alto-c-estrategista.html'
-            };
-            
-            const url = redirectUrls[type];
-            console.log('Redirecionando para URL:', url);
-            console.log('Tipo recebido:', type);
-            console.log('URLs disponíveis:', redirectUrls);
-            
-            if (url) {
-                console.log('✅ Redirecionando para:', url);
-                window.location.href = url;
-            } else {
-                console.log('❌ Tipo não encontrado, usando fallback');
-                // Fallback para formulário tipo D
-                window.location.href = './forms/alto-d-conquistador.html';
+            // Tracking (não bloqueia o redirecionamento)
+            try {
+                // Facebook Pixel - Lead Magnet Download
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'Lead', {
+                        content_name: currentLead.name + ' Download',
+                        personality_type: type,
+                        neurotransmitter: currentLead.neuro,
+                        value: currentLead.value,
+                        currency: 'BRL',
+                        event_source_url: window.location.href
+                    });
+                }
+                
+                // Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'lead_magnet_download', {
+                        'personality_type': type,
+                        'magnet_name': `kit_${type}`,
+                        'lead_value': currentLead.value,
+                        'neurotransmitter': currentLead.neuro
+                    });
+                    
+                    // Google Ads - Lead Generation
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-CONVERSION_ID/LEAD_DOWNLOAD_LABEL',
+                        'value': currentLead.value,
+                        'currency': 'BRL',
+                        'personality_type': type
+                    });
+                }
+            } catch (error) {
+                console.log('⚠️ Erro no tracking (não crítico):', error);
             }
+            
+            // Redirect com delay para garantir tracking
+            console.log('⏰ Iniciando redirecionamento em 500ms...');
+            
+            setTimeout(function() {
+                // Redirect to specific form based on type (FLUXO CORRETO: CAPTURA PRIMEIRO)
+                const redirectUrls = {
+                    'conquistador': './forms/alto-d-conquistador.html',
+                    'conectado': './forms/alto-i-conectado.html', 
+                    'construtor': './forms/alto-s-construtor.html',
+                    'estrategista': './forms/alto-c-estrategista.html'
+                };
+                
+                const url = redirectUrls[type];
+                console.log('🔄 Redirecionando para URL:', url);
+                console.log('📝 Tipo recebido:', type);
+                console.log('📋 URLs disponíveis:', redirectUrls);
+                
+                if (url) {
+                    console.log('✅ REDIRECIONANDO PARA:', url);
+                    // Forçar redirecionamento
+                    window.location.replace(url);
+                } else {
+                    console.log('❌ Tipo não encontrado, usando fallback');
+                    // Fallback para formulário tipo D
+                    window.location.replace('./forms/alto-d-conquistador.html');
+                }
+            }, 500);
         }
         
         // Facebook Pixel

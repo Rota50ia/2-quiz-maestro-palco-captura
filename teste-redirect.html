@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Redirecionamento</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; background: #f5f5f5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        .btn { background: #3B82F6; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; margin: 10px; }
+        .btn:hover { background: #2563EB; }
+        .log { background: #f8f9fa; padding: 15px; border-left: 4px solid #3B82F6; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste de Redirecionamento</h1>
+        <p>Clique nos botões para testar o redirecionamento para os formulários:</p>
+        
+        <button class="btn" onclick="testarRedirect('estrategista')">
+            🔵 Testar ESTRATEGISTA → Formulário C
+        </button>
+        
+        <button class="btn" onclick="testarRedirect('conquistador')">
+            🔴 Testar CONQUISTADOR → Formulário D
+        </button>
+        
+        <button class="btn" onclick="testarRedirect('conectado')">
+            🟠 Testar CONECTADO → Formulário I
+        </button>
+        
+        <button class="btn" onclick="testarRedirect('construtor')">
+            🟡 Testar CONSTRUTOR → Formulário S
+        </button>
+        
+        <div id="log" class="log" style="display: none;">
+            <h3>📋 Log de Debug:</h3>
+            <div id="log-content"></div>
+        </div>
+    </div>
+
+    <script>
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const logContent = document.getElementById('log-content');
+            logDiv.style.display = 'block';
+            logContent.innerHTML += '<p>• ' + message + '</p>';
+            console.log(message);
+        }
+        
+        function testarRedirect(type) {
+            log('🚀 Iniciando teste para tipo: ' + type);
+            
+            // Mesma lógica do quiz
+            const redirectUrls = {
+                'conquistador': './forms/alto-d-conquistador.html',
+                'conectado': './forms/alto-i-conectado.html', 
+                'construtor': './forms/alto-s-construtor.html',
+                'estrategista': './forms/alto-c-estrategista.html'
+            };
+            
+            const url = redirectUrls[type];
+            log('📍 URL de destino: ' + url);
+            
+            if (url) {
+                log('✅ URL encontrada, redirecionando em 3 segundos...');
+                
+                // Countdown visual
+                let countdown = 3;
+                const timer = setInterval(() => {
+                    log('⏰ Redirecionando em ' + countdown + 's...');
+                    countdown--;
+                    
+                    if (countdown < 0) {
+                        clearInterval(timer);
+                        log('🔄 REDIRECIONANDO AGORA!');
+                        window.location.href = url;
+                    }
+                }, 1000);
+            } else {
+                log('❌ URL não encontrada para tipo: ' + type);
+            }
+        }
+        
+        // Log inicial
+        document.addEventListener('DOMContentLoaded', function() {
+            log('📱 Página de teste carregada');
+            log('🌐 URL atual: ' + window.location.href);
+        });
+    </script>
+</body>
+</html>
