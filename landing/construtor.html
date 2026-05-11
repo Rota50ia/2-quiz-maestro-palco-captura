@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAESTRO PALCO — Plano do Construtor Musical</title>
+<meta name="description" content="Sistema completo para músicos equilibrados: crescimento sustentável, renda recorrente e planejamento de longo prazo. Construa seu legado musical.">
+
+<!-- SEO — Canonical & Indexação -->
+<link rel="canonical" href="https://maestropalco.rota50ia.com/construtor">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Edilson Morais">
+<meta name="theme-color" content="#FACC15">
+
+<!-- Open Graph — Facebook, WhatsApp, LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maestropalco.rota50ia.com/construtor">
+<meta property="og:title" content="MAESTRO PALCO — Plano do Construtor Musical">
+<meta property="og:description" content="Sistema completo para músicos que pensam em LEGADO e crescimento sustentável.">
+<meta property="og:image" content="https://maestropalco.rota50ia.com/og-image-construtor.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="MAESTRO PALCO">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ═══════════════════════════════════════════════
+     MAESTRO PALCO DESIGN SYSTEM — CONSTRUTOR VARIANT
+     Base: Midnight + Gold / Variant: Yellow accents for Stability
+  ═══════════════════════════════════════════════ */
+  :root {
+    /* DESIGN TOKENS OFICIAIS MAESTRO */
+    --m-midnight-950: #141422;
+    --m-midnight-900: #1C1C2E;
+    --m-midnight-800: #23233A;
+    --m-midnight-700: #2D2D4A;
+    --m-midnight-600: #37376A;
+    --m-midnight-500: #3F3F72;
+
+    --m-gold-900: #6B5220;
+    --m-gold-800: #886828;
+    --m-gold-700: #A07D34;
+    --m-gold-600: #B89340;
+    --m-gold-500: #C9A84C;
+    --m-gold-400: #DFBE62;
+    --m-gold-300: #F0D080;
+    --m-gold-200: #FFE399;
+    --m-gold-100: #FFEFC2;
+
+    --m-slate-200: #E2E8F0;
+    --m-slate-300: #CBD5E1;
+    --m-slate-400: #94A3B8;
+    --m-slate-500: #64748B;
+    --m-slate-600: #475569;
+    --m-slate-700: #334155;
+
+    /* Construtor Yellow (neurological stability) */
+    --m-yellow-500:   #FACC15;
+    --m-yellow-300:   #FDE047;
+    --m-yellow-glow:  rgba(250, 204, 21, 0.18);
+    --m-yellow-dim:   rgba(250, 204, 21, 0.08);
+
+    /* Semantic */
+    --m-ink:          #0A0A14;
+    --m-danger:       #EF4444;
+    --m-success:      #10B981;
+
+    /* Borders */
+    --border-faint:   rgba(255, 255, 255, 0.06);
+    --border-soft:    rgba(255, 255, 255, 0.10);
+    --border-gold:    rgba(201, 168, 76, 0.35);
+    --border-yellow:  rgba(250, 204, 21, 0.35);
+
+    /* Spacing */
+    --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
+    --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;  --sp-10: 40px;
+    --sp-12: 48px; --sp-16: 64px; --sp-20: 80px; --sp-24: 96px;
+
+    /* Typography OFICIAL */
+    --font-display: 'Montserrat', 'Arial Black', Helvetica, sans-serif;
+    --font-sans:    'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+    /* Radius */
+    --r-sm: 4px;  --r-md: 6px;  --r-lg: 10px;  --r-xl: 14px;
+
+    /* Container */
+    --container: 680px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     RESET / BASE
+  ═══════════════════════════════════════════════ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--m-slate-200);
+    background: var(--m-midnight-900);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--sp-6);
+  }
+
+  section { padding: var(--sp-20) 0; }
+
+  /* ═══════════════════════════════════════════════
+     TYPE SCALE — Montserrat 900 display
+  ═══════════════════════════════════════════════ */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--m-slate-200);
+  }
+
+  h1 { font-size: clamp(40px, 7vw, 64px); }
+  h2 { font-size: clamp(28px, 4.5vw, 38px); margin-bottom: var(--sp-6); }
+  h3 { font-size: clamp(20px, 3vw, 24px); margin-bottom: var(--sp-4); }
+  h4 { font-size: 18px; font-weight: 700; margin-bottom: var(--sp-3); }
+
+  p { margin-bottom: var(--sp-4); }
+  p:last-child { margin-bottom: 0; }
+
+  a { color: var(--m-yellow-300); text-decoration: none; }
+  strong { color: var(--m-yellow-300); font-weight: 700; }
+
+  /* ═══════════════════════════════════════════════
+     ATOMS — BUTTON
+  ═══════════════════════════════════════════════ */
+  .btn-cta {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.02em;
+    background: var(--m-yellow-500);
+    color: var(--m-ink);
+    border: none;
+    border-radius: var(--r-sm);
+    padding: var(--sp-5) var(--sp-10);
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 4px 20px rgba(250, 204, 21, 0.25);
+  }
+  .btn-cta:hover {
+    background: var(--m-yellow-300);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(250, 204, 21, 0.35);
+  }
+  .btn-cta-lg {
+    font-size: 19px;
+    padding: var(--sp-6) var(--sp-12);
+    width: 100%;
+    max-width: 520px;
+  }
+
+  /* Divider */
+  .divider-yellow {
+    width: 80px; height: 2px;
+    background: var(--m-yellow-500);
+    margin: var(--sp-8) auto;
+    border: none;
+  }
+
+  /* ═══════════════════════════════════════════════
+     HERO CONSTRUTOR
+  ═══════════════════════════════════════════════ */
+  .hero {
+    padding: var(--sp-24) 0 var(--sp-20);
+    background:
+      radial-gradient(ellipse at top, var(--m-yellow-glow) 0%, transparent 55%),
+      var(--m-midnight-900);
+    border-bottom: 1px solid var(--border-faint);
+    text-align: center;
+  }
+  .hero .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--m-yellow-500);
+    margin-bottom: var(--sp-6);
+  }
+  .hero h1 {
+    color: var(--m-yellow-500);
+    margin-bottom: var(--sp-6);
+  }
+  .hero h1 .highlight {
+    color: var(--m-slate-200);
+    display: block;
+  }
+  .hero .subheadline {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--m-slate-400);
+    margin-bottom: var(--sp-10);
+    font-weight: 400;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero .subheadline strong {
+    color: var(--m-slate-200);
+    font-weight: 500;
+  }
+
+  /* ═══════════════════════════════════════════════
+     IDENTIFICAÇÃO CONSTRUTOR
+  ═══════════════════════════════════════════════ */
+  .identification {
+    background: var(--m-midnight-950);
+    border-left: 3px solid var(--m-yellow-500);
+  }
+  .identification .intro {
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--m-slate-200);
+    margin-bottom: var(--sp-8);
+  }
+  .ident-list {
+    list-style: none;
+    margin-bottom: var(--sp-8);
+  }
+  .ident-list li {
+    position: relative;
+    padding: var(--sp-4) 0 var(--sp-4) var(--sp-8);
+    border-bottom: 1px solid var(--border-faint);
+    color: var(--m-slate-200);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .ident-list li:last-child { border-bottom: none; }
+  .ident-list li::before {
+    content: "🏗️";
+    position: absolute;
+    left: 0;
+    top: var(--sp-4);
+    font-weight: 900;
+    font-family: var(--font-display);
+  }
+  .identification .closing {
+    font-weight: 700;
+    color: var(--m-yellow-300);
+    font-size: 18px;
+    font-style: italic;
+    margin-top: var(--sp-6);
+  }
+
+  /* ═══════════════════════════════════════════════
+     PROBLEMA REAL
+  ═══════════════════════════════════════════════ */
+  .problem { text-align: left; }
+  .problem .lead {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--m-slate-200);
+    margin-bottom: var(--sp-6);
+    line-height: 1.35;
+  }
+  .problem .emphasis {
+    font-family: var(--font-display);
+    font-weight: 900;
+    color: var(--m-yellow-300);
+    font-size: 20px;
+    display: block;
+    padding: var(--sp-3) 0;
+    line-height: 1.4;
+  }
+  .problem .emphasis-block {
+    margin: var(--sp-8) 0;
+    padding: var(--sp-6);
+    background: var(--m-midnight-800);
+    border-left: 3px solid var(--m-yellow-500);
+    border-radius: var(--r-md);
+  }
+  .problem .signoff {
+    font-weight: 700;
+    color: var(--m-slate-200);
+    font-size: 18px;
+    margin-top: var(--sp-6);
+  }
+
+  /* ═══════════════════════════════════════════════
+     LEAD MAGNET
+  ═══════════════════════════════════════════════ */
+  .lead-magnet-section {
+    background: var(--m-midnight-950);
+  }
+  .lead-magnet {
+    background: var(--m-midnight-800);
+    border-top: 3px solid var(--m-yellow-500);
+    border-radius: var(--r-lg);
+    padding: var(--sp-10);
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+  .lead-magnet .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--m-yellow-500);
+    margin-bottom: var(--sp-4);
+  }
+  .lead-magnet .title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--m-slate-200);
+    margin-bottom: var(--sp-4);
+  }
+  .lead-magnet .subtitle {
+    color: var(--m-slate-400);
+    font-style: italic;
+    margin-bottom: var(--sp-8);
+  }
+
+  /* ═══════════════════════════════════════════════
+     BENEFITS GRID
+  ═══════════════════════════════════════════════ */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-4);
+    margin: var(--sp-8) auto;
+    max-width: 480px;
+    text-align: left;
+  }
+  .benefit-item {
+    background: var(--m-midnight-950);
+    border-radius: var(--r-md);
+    padding: var(--sp-4);
+    border-left: 3px solid var(--m-yellow-500);
+  }
+  .benefit-item .icon {
+    font-size: 1.2rem;
+    color: var(--m-yellow-500);
+    margin-bottom: var(--sp-2);
+  }
+  .benefit-item .text {
+    font-size: 15px;
+    color: var(--m-slate-200);
+    line-height: 1.4;
+  }
+  .benefit-item .text strong {
+    color: var(--m-yellow-300);
+    font-weight: 700;
+  }
+
+  /* ═══════════════════════════════════════════════
+     FORM SECTION
+  ═══════════════════════════════════════════════ */
+  .form-section {
+    margin-top: var(--sp-8);
+  }
+  .form-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--m-yellow-500);
+    font-size: 18px;
+    margin-bottom: var(--sp-6);
+  }
+  .email-form {
+    display: flex;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-4);
+  }
+  .email-input {
+    flex: 1;
+    padding: var(--sp-4);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: var(--r-sm);
+    background: rgba(255,255,255,0.05);
+    color: var(--m-slate-200);
+    font-size: 16px;
+    font-family: var(--font-sans);
+    transition: all 0.3s ease;
+  }
+  .email-input:focus {
+    outline: none;
+    border-color: var(--m-yellow-500);
+    background: rgba(255,255,255,0.08);
+  }
+  .email-input::placeholder {
+    color: var(--m-slate-400);
+  }
+
+  /* ═══════════════════════════════════════════════
+     GUARANTEES
+  ═══════════════════════════════════════════════ */
+  .guarantees {
+    display: flex;
+    justify-content: space-around;
+    margin-top: var(--sp-6);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--border-faint);
+    font-size: 14px;
+    color: var(--m-slate-400);
+  }
+  .guarantee-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+  .guarantee-item .icon {
+    color: var(--m-yellow-500);
+    font-size: 14px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     SOCIAL PROOF
+  ═══════════════════════════════════════════════ */
+  .social-proof {
+    background: rgba(255,255,255,0.03);
+    border-radius: var(--r-lg);
+    padding: var(--sp-6);
+    margin: var(--sp-8) 0;
+    text-align: center;
+  }
+  .proof-numbers {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: var(--sp-4);
+  }
+  .proof-item {
+    text-align: center;
+  }
+  .proof-number {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--m-yellow-500);
+    display: block;
+  }
+  .proof-label {
+    font-size: 12px;
+    color: var(--m-slate-400);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .proof-text {
+    color: var(--m-slate-400);
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════════════════════ */
+  @media (max-width: 600px) {
+    section { padding: var(--sp-16) 0; }
+    .hero { padding: var(--sp-20) 0 var(--sp-16); }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .email-form { flex-direction: column; }
+    .btn-cta-lg { width: 100%; }
+    .guarantees { flex-direction: column; gap: var(--sp-2); align-items: center; }
+    .proof-numbers { flex-direction: column; gap: var(--sp-4); }
+    body { font-size: 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     HERO CONSTRUTOR
+════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">🟡 SEU TIPO DISC: CONSTRUTOR</div>
+    
+    <h1>
+      VOCÊ É UM CONSTRUTOR MUSICAL!
+      <span class="highlight">Admirável! Você tem a mentalidade mais sábia: pensar em LEGADO.</span>
+    </h1>
+    
+    <p class="subheadline">
+      Construtores como você entendem que sucesso real não é "estourar" — é criar algo que <strong>DURA PARA SEMPRE</strong>. 
+      Seu superpoder: <strong>Consistência + Equilíbrio + Sustentabilidade</strong>.
+    </p>
+    
+    <a href="../04-ISCAS-DIGITAIS/S-EBOOK-CONSTRUTOR-MUSICAL-REDESIGN.html" target="_blank" class="btn-cta">Quero construir meu legado</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     IDENTIFICAÇÃO CONSTRUTOR
+════════════════════════════════════════════════ -->
+<section class="identification">
+  <div class="container">
+    <p class="intro">Construtores como você sabem que os músicos mais <strong>RICOS e FELIZES</strong> são aqueles que pensam em longo prazo.</p>
+    
+    <div class="divider-yellow"></div>
+    
+    <ul class="ident-list">
+      <li><strong>Seu superpoder:</strong> Consistência + Planejamento + Crescimento sustentável.</li>
+      <li>Você não quer crescer rápido e quebrar — quer crescer sólido e duradouro.</li>
+      <li>Você prefere ter renda previsível a depender de "grandes oportunidades".</li>
+      <li>Você valoriza equilíbrio entre carreira musical e qualidade de vida.</li>
+      <li>Você pensa em criar um LEGADO, não apenas fazer sucesso temporário.</li>
+    </ul>
+    
+    <p class="closing">Mas aqui está sua luta: o mundo musical é obcecado por "crescimento rápido" e você se sente pressionado a agir contra sua natureza. A verdade? <strong>Construtores são os que realmente prosperam</strong> a longo prazo.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PROBLEMA REAL
+════════════════════════════════════════════════ -->
+<section class="problem">
+  <div class="container">
+    <h2>Você precisa da estratégia SUSTENTÁVEL</h2>
+    <p class="lead">Não é sobre crescer rápido. É sobre crescer CERTO.</p>
+    <p>Músico construtor como você não quer queimar etapas — quer criar bases sólidas. Como estruturar renda recorrente? Como crescer sem sacrificar equilíbrio? Como construir carreira que dure décadas?</p>
+    
+    <div class="emphasis-block">
+      <span class="emphasis">Você não nasceu para ser meteoro que brilha e se apaga.</span>
+      <span class="emphasis">Você nasceu para ser SOL que ilumina por décadas.</span>
+      <span class="emphasis">E isso exige estratégia de construtor, não de velocista.</span>
+    </div>
+
+    <p class="signoff">Hora de parar de se pressionar por velocidade e começar a <strong>CONSTRUIR SEU IMPÉRIO</strong>.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     LEAD MAGNET CONSTRUTOR
+════════════════════════════════════════════════ -->
+<section class="lead-magnet-section" id="lead-magnet">
+  <div class="container">
+    <div class="lead-magnet">
+      <div class="eyebrow">MATERIAL EXCLUSIVO PARA CONSTRUTORES</div>
+      <div class="title">"Plano do Construtor: Carreira Musical Sustentável e Lucrativa"</div>
+      <div class="subtitle">Sistema completo para músicos que querem crescer sem sacrificar a paz mental</div>
+      
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="icon">📈</div>
+          <div class="text"><strong>Cronograma 36 Meses</strong><br>Crescimento gradual seguro, tijolo por tijolo</div>
+        </div>
+        <div class="benefit-item">
+          <div class="icon">💰</div>
+          <div class="text"><strong>Sistema Renda Recorrente</strong><br>75% da renda previsível e estável</div>
+        </div>
+        <div class="benefit-item">
+          <div class="icon">📊</div>
+          <div class="text"><strong>Planejamento Financeiro</strong><br>Gestão profissional para músicos</div>
+        </div>
+        <div class="benefit-item">
+          <div class="icon">⚖️</div>
+          <div class="text"><strong>Equilíbrio Vida-Carreira</strong><br>Sistema "Vida Plena" para músicos</div>
+        </div>
+      </div>
+      
+      <!-- Social Proof -->
+      <div class="social-proof">
+        <div class="proof-numbers">
+          <div class="proof-item">
+            <span class="proof-number">658</span>
+            <span class="proof-label">Construtores</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-number">75%</span>
+            <span class="proof-label">Renda recorrente</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-number">10</span>
+            <span class="proof-label">Anos sustentável</span>
+          </div>
+        </div>
+        <div class="proof-text">"Finalmente uma estratégia que respeita meu ritmo. Cresci 200% em 18 meses sem estresse." - Paulo R.</div>
+      </div>
+      
+      <!-- Form -->
+      <div class="form-section">
+        <div class="form-title">🏗️ BAIXAR PLANO DO CONSTRUTOR - GRÁTIS</div>
+        
+        <form class="email-form" onsubmit="submitForm(event)">
+          <input 
+            type="email" 
+            class="email-input" 
+            placeholder="Seu email (entrega imediata)" 
+            required
+            id="email"
+          >
+          <button type="submit" class="btn-cta">
+            CONSTRUIR LEGADO
+          </button>
+        </form>
+        
+        <div class="guarantees">
+          <div class="guarantee-item">
+            <span class="icon">✅</span>
+            <span>Entrega imediata</span>
+          </div>
+          <div class="guarantee-item">
+            <span class="icon">🏗️</span>
+            <span>Testado e aprovado</span>
+          </div>
+          <div class="guarantee-item">
+            <span class="icon">🔒</span>
+            <span>Zero spam</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Analytics tracking neurológico para Construtores
+  function trackEvent(eventName, properties = {}) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, {
+        'personality_type': 'construtor',
+        'page_type': 'lead_magnet_maestro',
+        'neurotransmitter_target': 'serotonin',
+        'conversion_psychology': 'stability_security',
+        ...properties
+      });
+    }
+  }
+  
+  // Track page view
+  trackEvent('page_view', {
+    'page_title': 'Plano do Construtor - Maestro Palco',
+    'page_location': window.location.href,
+    'disc_type': 'S_steadiness'
+  });
+  
+  // Form submission para Construtores
+  function submitForm(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    
+    // Track conversion
+    trackEvent('lead_magnet_download', {
+      'magnet_name': 'plano_construtor_maestro',
+      'email_provided': true,
+      'conversion_trigger': 'legacy_button'
+    });
+    
+    // Mensagem para perfil Construtor (estável e reconfortante)
+    alert(`Perfeito! 🏗️ Enviando Plano do Construtor para ${email}...\n\nEm 2 minutos você receberá:\n✅ Cronograma de Crescimento 36 Meses\n✅ Sistema de Renda Recorrente\n✅ Planejamento Financeiro Musical\n✅ Estratégias de Equilíbrio Vida-Carreira\n\n🌟 Agora você vai CONSTRUIR seu legado musical!`);
+    
+    // Redirect para página de agradecimento específica para Construtores
+    // window.location.href = '/construtor-obrigado-maestro';
+  }
+  
+  // Advanced tracking para personalidade Construtora
+  let stabilityInteractions = 0;
+  let stabilityTriggers = ['LEGADO', 'SUSTENTÁVEL', 'CONSTRUIR', 'EQUILÍBRIO', 'ESTÁVEL'];
+  
+  // Track scroll com foco em estabilidade
+  let scrollTracked = false;
+  window.addEventListener('scroll', function() {
+    if (!scrollTracked && window.pageYOffset > 300) {
+      trackEvent('scroll_engagement', {
+        'scroll_depth': '50%',
+        'stability_response': 'measured'
+      });
+      scrollTracked = true;
+    }
+  });
+  
+  // Track clicks em palavras-chave de estabilidade
+  document.addEventListener('click', function(e) {
+    const text = e.target.textContent || '';
+    const hasStabilityTrigger = stabilityTriggers.some(trigger => text.includes(trigger));
+    
+    if (hasStabilityTrigger) {
+      stabilityInteractions++;
+      trackEvent('stability_trigger_click', {
+        'trigger_word': text.substring(0, 20),
+        'total_stability_interactions': stabilityInteractions
+      });
+    }
+  });
+  
+  // Track time com contexto de consistência
+  let timeStart = Date.now();
+  window.addEventListener('beforeunload', function() {
+    const timeSpent = Math.round((Date.now() - timeStart) / 1000);
+    const consistencyScore = timeSpent > 180 ? 'high' : timeSpent > 90 ? 'medium' : 'low';
+    
+    trackEvent('session_end', {
+      'time_spent_seconds': timeSpent,
+      'consistency_score': consistencyScore,
+      'stability_interactions': stabilityInteractions,
+      'conversion_likelihood': consistencyScore === 'high' ? 'very_high' : 'medium'
+    });
+  });
+
+  // Track steady engagement patterns
+  let engagementPattern = [];
+  setInterval(function() {
+    engagementPattern.push(Date.now());
+    if (engagementPattern.length > 5) {
+      const avgInterval = engagementPattern.reduce((acc, curr, i) => {
+        if (i === 0) return acc;
+        return acc + (curr - engagementPattern[i-1]);
+      }, 0) / (engagementPattern.length - 1);
+      
+      if (avgInterval > 15000 && avgInterval < 30000) { // Steady engagement pattern
+        trackEvent('steady_engagement_pattern', {
+          'pattern_type': 'consistent',
+          'average_interval_ms': avgInterval
+        });
+      }
+    }
+  }, 15000);
+</script>
+
+<!-- Google Analytics (replace with your tracking code) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SXXB0S0NPL"></script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=FACEBOOK_PIXEL_ID&ev=PageView&noscript=1" /></noscript>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SXXB0S0NPL');
+</script>
+
+</body>
+</html>

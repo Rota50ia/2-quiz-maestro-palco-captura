@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Construtor Musical - MAESTRO PALCO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* === AIOS DESIGN SYSTEM TOKENS - TIPO S === */
+        :root {
+            --type-primary: #FACC15;
+            --type-secondary: #FDE047;
+            --type-dark: #A16207;
+            --primary: #1A1C1E;
+            --secondary: #6C7278;
+            --neutral: #F7F5F2;
+            --surface: #FFFFFF;
+            --on-surface: #1A1C1E;
+            
+            /* Typography Tokens */
+            --headline-display: 64px;
+            --headline-lg: 48px;
+            --headline-md: 32px;
+            --body-lg: 18px;
+            --body-md: 16px;
+            --body-sm: 14px;
+            --label-lg: 16px;
+            --label-md: 14px;
+            --label-sm: 12px;
+            
+            /* Spacing Tokens */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-xxl: 48px;
+            --space-xxxl: 64px;
+            
+            /* Rounded Tokens */
+            --rounded-sm: 4px;
+            --rounded-md: 8px;
+            --rounded-lg: 12px;
+            --rounded-xl: 16px;
+            
+            /* Premium Visual Enhancements - Tipo S (Dourado/Segurança) */
+            --gradient-primary: linear-gradient(135deg, var(--type-primary) 0%, var(--type-dark) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--type-primary) 0%, var(--type-secondary) 100%);
+            --gradient-safe: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            --shadow-sm: 0 2px 4px rgba(26, 28, 30, 0.05);
+            --shadow-md: 0 4px 12px rgba(26, 28, 30, 0.08);
+            --shadow-lg: 0 8px 32px rgba(26, 28, 30, 0.12);
+            --shadow-xl: 0 20px 64px rgba(26, 28, 30, 0.15);
+            --shadow-gold: 0 8px 32px rgba(250, 204, 21, 0.15);
+        }
+
+        /* === PDF OPTIMIZATION === */
+        @media print {
+            * { 
+                -webkit-print-color-adjust: exact !important; 
+                color-adjust: exact !important; 
+                print-color-adjust: exact !important;
+            }
+            body { margin: 0; padding: 20px; background: white !important; }
+            .page-break { page-break-before: always; }
+            .no-break { page-break-inside: avoid; }
+            .container { box-shadow: none !important; }
+            .floating-elements { display: none !important; }
+        }
+
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--primary);
+            background: linear-gradient(135deg, #fffbeb 0%, var(--neutral) 100%);
+            font-size: var(--body-md);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--surface);
+            padding: var(--space-xxxl);
+            box-shadow: var(--shadow-xl);
+            border-radius: var(--rounded-lg);
+            margin-top: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(250, 204, 21, 0.1);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-accent);
+            z-index: 10;
+        }
+
+        /* === PREMIUM TYPOGRAPHY === */
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 5vw, var(--headline-display));
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.75rem, 3vw, var(--headline-md));
+            font-weight: 700;
+            color: var(--primary);
+            margin: var(--space-xxxl) 0 var(--space-lg) 0;
+            position: relative;
+            padding-left: var(--space-lg);
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: var(--space-sm);
+            height: 100%;
+            background: var(--gradient-accent);
+            border-radius: var(--rounded-sm);
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: var(--body-lg);
+            font-weight: 700;
+            color: var(--type-dark);
+            margin: var(--space-xl) 0 var(--space-md) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        h3::before {
+            content: '🔧';
+            color: var(--type-primary);
+            font-size: var(--body-lg);
+        }
+
+        h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--label-lg);
+            font-weight: 600;
+            color: var(--secondary);
+            margin: var(--space-lg) 0 var(--space-sm) 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* === PREMIUM COVER PAGE === */
+        .cover {
+            text-align: center;
+            padding: var(--space-xxxl) var(--space-xl);
+            background: var(--gradient-primary);
+            color: white;
+            margin: calc(-1 * var(--space-xxxl)) calc(-1 * var(--space-xxxl)) var(--space-xxxl) calc(-1 * var(--space-xxxl));
+            border-radius: var(--rounded-lg) var(--rounded-lg) 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            animation: gentleFloat 25s ease-in-out infinite;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translate(0%, 0%) rotate(0deg); }
+            33% { transform: translate(15px, -15px) rotate(60deg); }
+            66% { transform: translate(-10px, 10px) rotate(120deg); }
+        }
+
+        .cover-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: var(--space-xl);
+            font-size: var(--body-lg);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover h1 {
+            color: white;
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: var(--space-lg);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover .subtitle {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-bottom: var(--space-xl);
+            opacity: 0.95;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.4;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover-meta {
+            font-size: var(--body-lg);
+            margin-top: var(--space-xxxl);
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            padding: var(--space-lg);
+            border-radius: var(--rounded-lg);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* === PREMIUM CONTENT BLOCKS === */
+        .summary-box {
+            background: var(--gradient-safe);
+            border: 2px solid var(--type-primary);
+            border-radius: var(--rounded-lg);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            position: relative;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .summary-box::before {
+            content: '🏗️';
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            font-size: var(--headline-md);
+            opacity: 0.7;
+        }
+
+        .exercise-box {
+            background: linear-gradient(135deg, var(--surface) 0%, #fffbeb 100%);
+            border: 2px solid var(--type-primary);
+            border-radius: var(--rounded-lg);
+            padding: var(--space-lg);
+            margin: var(--space-lg) 0;
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+
+        .exercise-title {
+            background: var(--gradient-accent);
+            color: var(--type-dark);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 20px;
+            font-size: var(--label-sm);
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--type-dark);
+        }
+
+        .formula-box {
+            background: var(--surface);
+            border: 3px solid var(--type-primary);
+            border-radius: var(--rounded-lg);
+            padding: var(--space-xl);
+            margin: var(--space-lg) 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .formula-box::before {
+            content: '📊';
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-md);
+            font-size: var(--headline-md);
+        }
+
+        .highlight-box {
+            background: var(--gradient-accent);
+            color: var(--type-dark) !important;
+            border-radius: var(--rounded-lg);
+            padding: var(--space-xl);
+            margin: var(--space-lg) 0;
+            text-align: center;
+            box-shadow: var(--shadow-gold);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--type-dark);
+        }
+
+        .highlight-box * {
+            color: var(--type-dark) !important;
+        }
+
+        .highlight-box h2,
+        .highlight-box h3,
+        .highlight-box h4,
+        .highlight-box p,
+        .highlight-box strong,
+        .highlight-box em {
+            color: var(--type-dark) !important;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            border-radius: var(--rounded-lg);
+            animation: gentleShimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes gentleShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* === PREMIUM TABLES === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-lg) 0;
+            background: var(--surface);
+            border-radius: var(--rounded-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--type-primary);
+        }
+
+        th {
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--space-lg);
+            font-weight: 700;
+            text-align: left;
+            font-size: var(--label-md);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: var(--space-lg);
+            border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: #fffbeb;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* === ENHANCED LISTS === */
+        ul, ol {
+            margin: var(--space-md) 0;
+            padding-left: var(--space-xl);
+        }
+
+        li {
+            margin: var(--space-sm) 0;
+            line-height: 1.7;
+        }
+
+        /* === SPECIAL ELEMENTS === */
+        .checklist {
+            list-style: none;
+            margin: var(--space-md) 0;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: var(--space-sm) 0;
+            position: relative;
+            padding-left: var(--space-xl);
+            transition: transform 0.1s ease;
+        }
+
+        .checklist li:hover {
+            transform: translateX(2px);
+        }
+
+        .checklist li::before {
+            content: '🔧';
+            position: absolute;
+            left: 0;
+            color: var(--type-primary);
+            font-weight: bold;
+            font-size: var(--body-lg);
+        }
+
+        .script-container {
+            background: var(--gradient-safe);
+            border-radius: var(--rounded-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 2px solid var(--type-primary);
+            position: relative;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .script-step {
+            margin: var(--space-lg) 0;
+            padding: var(--space-lg);
+            background: var(--surface);
+            border-radius: var(--rounded-lg);
+            border-left: 4px solid var(--type-primary);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.1s ease, box-shadow 0.2s ease;
+        }
+
+        .script-step:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .dialogue {
+            font-style: italic;
+            background: var(--gradient-safe);
+            padding: var(--space-md);
+            border-radius: var(--rounded-md);
+            border-left: 3px solid var(--type-primary);
+            margin: var(--space-sm) 0;
+            position: relative;
+        }
+
+        .dialogue::before {
+            content: '💬';
+            position: absolute;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            font-size: var(--body-lg);
+            opacity: 0.6;
+        }
+
+        /* === STABILITY INDICATORS === */
+        .stability-indicator {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--rounded-md);
+            font-size: var(--label-sm);
+            font-weight: 600;
+            display: inline-block;
+            margin: var(--space-xs) var(--space-sm) var(--space-xs) 0;
+        }
+
+        .risk-level {
+            background: #FEF3C7;
+            color: var(--type-dark);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--rounded-md);
+            font-size: var(--label-sm);
+            font-weight: 600;
+            display: inline-block;
+            border: 1px solid var(--type-primary);
+        }
+
+        /* === TEXT FORMATTING === */
+        strong {
+            color: var(--type-dark);
+            font-weight: 700;
+        }
+
+        em {
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        code, pre {
+            background: #fffbeb;
+            padding: var(--space-md);
+            border-radius: var(--rounded-md);
+            font-family: 'Monaco', 'Courier New', monospace;
+            margin: var(--space-md) 0;
+            border-left: 4px solid var(--type-primary);
+            box-shadow: var(--shadow-sm);
+            font-size: var(--body-sm);
+            line-height: 1.6;
+            border: 1px solid rgba(250, 204, 21, 0.3);
+        }
+
+        /* === PREMIUM FOOTER === */
+        .footer {
+            margin-top: var(--space-xxxl);
+            padding-top: var(--space-xl);
+            border-top: 2px solid rgba(250, 204, 21, 0.3);
+            text-align: center;
+            font-size: var(--label-md);
+            color: var(--secondary);
+            background: var(--gradient-safe);
+            padding: var(--space-xl);
+            border-radius: var(--rounded-lg);
+            margin-left: calc(-1 * var(--space-xxxl));
+            margin-right: calc(-1 * var(--space-xxxl));
+            border: 1px solid rgba(250, 204, 21, 0.2);
+        }
+
+        /* === FLOATING ELEMENTS (Only for screen) === */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.03) 0%, transparent 70%);
+            animation: floatStable 20s ease-in-out infinite;
+        }
+
+        .floating-circle:nth-child(1) {
+            width: 180px;
+            height: 180px;
+            top: 15%;
+            right: 15%;
+            animation-delay: 0s;
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            bottom: 25%;
+            left: 10%;
+            animation-delay: 7s;
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            top: 65%;
+            right: 25%;
+            animation-delay: 14s;
+        }
+
+        @keyframes floatStable {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+            33% { transform: translate(15px, -10px) scale(1.05); opacity: 0.3; }
+            66% { transform: translate(-10px, 15px) scale(0.95); opacity: 0.25; }
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            .container { 
+                padding: var(--space-lg) var(--space-md); 
+                margin: var(--space-md);
+                border-radius: var(--rounded-md);
+            }
+            .cover { 
+                margin: calc(-1 * var(--space-lg)) calc(-1 * var(--space-md)) var(--space-lg) calc(-1 * var(--space-md)); 
+                padding: var(--space-xxxl) var(--space-md); 
+            }
+            .cover h1 { font-size: clamp(2rem, 8vw, 3rem); }
+            h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+            .floating-elements { display: none; }
+        }
+
+        /* === SCROLL ANIMATIONS === */
+        @media (prefers-reduced-motion: no-preference) {
+            .summary-box, .exercise-box, .formula-box, .highlight-box, .script-container {
+                opacity: 0;
+                transform: translateY(15px);
+                animation: fadeInUpGentle 0.8s ease forwards;
+            }
+
+            .summary-box { animation-delay: 0.1s; }
+            .exercise-box { animation-delay: 0.2s; }
+            .formula-box { animation-delay: 0.3s; }
+            .highlight-box { animation-delay: 0.4s; }
+        }
+
+        @keyframes fadeInUpGentle {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === PRINT OPTIMIZATIONS === */
+        @media print {
+            .floating-elements,
+            .cover::before { display: none !important; }
+            
+            .container { 
+                box-shadow: none !important; 
+                border-radius: 0 !important; 
+                margin: 0 !important;
+                border: none !important;
+            }
+            
+            .cover {
+                border-radius: 0 !important;
+                background: var(--type-primary) !important;
+            }
+            
+            .highlight-box::before,
+            .summary-box::before,
+            .formula-box::before,
+            .dialogue::before { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements (Screen Only) -->
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
+
+    <div class="container">
+        <!-- COVER PAGE -->
+        <div class="cover">
+            <div class="cover-badge">
+                🟡 TIPO S - CONSTRUTOR
+            </div>
+            <h1>O CONSTRUTOR MUSICAL</h1>
+            <p class="subtitle">Como Criar uma Carreira Musical Sólida e Sustentável em 12 Meses Sem Pressa ou Riscos</p>
+            
+            <div class="cover-meta">
+                <strong>Por:</strong> Edilson Morais | <strong>MAESTRO PALCO</strong><br>
+                <strong>Para:</strong> Músicos tipo S (Estáveis/Construtores)
+            </div>
+        </div>
+
+        <!-- SUMÁRIO -->
+        <div class="page-break"></div>
+        <h2>📋 SUMÁRIO EXECUTIVO</h2>
+        
+        <div class="summary-box">
+            <h3>BRIEFING DO EBOOK:</h3>
+            <ul>
+                <li><strong>Tema central:</strong> Sistema de sustentabilidade musical para músicos prudentes</li>
+                <li><strong>Avatar:</strong> Músico profissional tipo S, 25-45 anos, quer estabilidade duradoura</li>
+                <li><strong>Transformação:</strong> De músico inseguro para profissional sustentável em 12 meses</li>
+                <li><strong>Entregável:</strong> Plano gradual implementável com garantias e métricas</li>
+            </ul>
+
+            <h4>PROGRESSÃO COGNITIVA (Bloom's Taxonomy):</h4>
+            <ol>
+                <li><strong>LEMBRAR:</strong> Identificar características de músicos estáveis</li>
+                <li><strong>ENTENDER:</strong> Compreender psicologia de crescimento sustentável</li>
+                <li><strong>APLICAR:</strong> Implementar planilha de sustentabilidade e protocolos</li>
+                <li><strong>ANALISAR:</strong> Avaliar riscos e oportunidades graduais</li>
+                <li><strong>AVALIAR:</strong> Medir estabilidade e ajustar estratégia</li>
+                <li><strong>CRIAR:</strong> Desenvolver sistema próprio de sustentabilidade</li>
+            </ol>
+        </div>
+
+        <!-- INTRODUÇÃO -->
+        <div class="page-break"></div>
+        <h2>🟡 INTRODUÇÃO: O MÚSICO CONSTRUTOR</h2>
+
+        <h3>Por que você é especial?</h3>
+        <p>Você não é como outros músicos que querem "virar da noite pro dia". Você tem sabedoria. Você entende que <strong>SUSTENTABILIDADE</strong> vale mais que explosões temporárias. Você quer construir algo <strong>SÓLIDO</strong> que dure décadas.</p>
+
+        <p><strong>Confirmado:</strong> Você tem o perfil neurológico tipo S (Estável/Construtor).</p>
+
+        <h3>O que isso significa cientificamente?</h3>
+        <p>Segundo Dr. NeuroCopy, músicos tipo S têm:</p>
+        <ul>
+            <li><strong>Sistema serotoninérgico:</strong> Ativação alta por estabilidade/previsibilidade</li>
+            <li><strong>Aversão ao risco:</strong> Alta (amígdala mais sensível a incertezas)</li>
+            <li><strong>Tomada de decisão:</strong> Pausada, analítica (sistema 2 de Kahneman)</li>
+            <li><strong>Neurotransmissor dominante:</strong> Serotonina + Oxitocina</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>TRADUZINDO:</strong> Você está programado para construir, não improvisar.
+        </div>
+
+        <h3>O problema dos conselhos "rápidos"</h3>
+        <p>90% dos conselhos musicais são feitos para personalidades agressivas (tipos D e I). Quando Construtores seguem estratégias "explosivas", eles <strong>SE QUEIMAM</strong>.</p>
+
+        <p><strong>Você precisa da estratégia GRADUAL para seu perfil.</strong></p>
+
+        <h3>A verdade sobre os músicos mais RICOS</h3>
+        <p>Os dados não mentem: músicos com maior patrimônio líquido aos 50+ anos são todos tipo S. Eles pensam em décadas, não em meses.</p>
+
+        <div class="highlight-box">
+            <strong>FATO:</strong> O mercado musical está obcecado por "crescimento rápido", mas você se sente pressionado a agir contra sua natureza. A verdade? Os músicos mais RICOS e FELIZES são todos Construtores.
+        </div>
+
+        <!-- MÓDULO 1 -->
+        <div class="page-break"></div>
+        <h2>🏗️ MÓDULO 1: ANATOMIA DO CONSTRUTOR MUSICAL</h2>
+
+        <div class="summary-box">
+            <strong>OBJETIVO:</strong> Entender a psicologia da construção sustentável no mercado musical
+        </div>
+
+        <h3>As 4 Pilares da Sustentabilidade</h3>
+
+        <h4>💰 PILAR 1: ESTABILIDADE FINANCEIRA</h4>
+        <span class="stability-indicator">BAIXO RISCO</span>
+        <p>Renda musical previsível e crescente.</p>
+        <ul>
+            <li><strong>Meta:</strong> 70% da renda de fontes fixas (aulas, contratos mensais)</li>
+            <li><strong>Segurança:</strong> Reserva de emergência para 6 meses</li>
+            <li><strong>Crescimento:</strong> Aumento gradual de 20% ao ano</li>
+        </ul>
+
+        <h4>🎯 PILAR 2: COMPETÊNCIA CONSOLIDADA</h4>
+        <span class="stability-indicator">BAIXO RISCO</span>
+        <p>Habilidades técnicas sólidas e comprováveis.</p>
+        <ul>
+            <li><strong>Exercício:</strong> Autoavalie nível técnico (competência mínima: nível 7)</li>
+            <li><strong>Evidência:</strong> Gravações, certificações, depoimentos</li>
+            <li><strong>Meta:</strong> Ser reconhecido como "confiável" e "profissional"</li>
+        </ul>
+
+        <h4>🤝 PILAR 3: RELACIONAMENTOS DURADOUROS</h4>
+        <span class="stability-indicator">BAIXO RISCO</span>
+        <p>Rede de clientes que confiam em você.</p>
+        <ul>
+            <li><strong>Princípio:</strong> Prefira cliente fiel a cliente que paga mais</li>
+            <li><strong>Sistema:</strong> Relacionamento de longo prazo (5+ anos)</li>
+            <li><strong>Evidência:</strong> Indicações espontâneas e contratos renovados</li>
+        </ul>
+
+        <h4>📈 PILAR 4: CRESCIMENTO PREVISÍVEL</h4>
+        <span class="stability-indicator">BAIXO RISCO</span>
+        <p>Expansão controlada e planejada.</p>
+        <ul>
+            <li><strong>Filosofia:</strong> "Devagar e sempre" supera "rápido e às vezes"</li>
+            <li><strong>Meta:</strong> Crescimento de 15-25% ao ano (sustentável)</li>
+            <li><strong>Método:</strong> Passos pequenos com validação constante</li>
+        </ul>
+
+        <h3>Análise de Risco vs Oportunidade</h3>
+
+        <div class="exercise-box">
+            <div class="exercise-title">EXERCÍCIO PRÁTICO 1: Mapeamento de Estabilidade</div>
+            <p>Analise sua situação atual (seja honesto):</p>
+            
+            <pre>FONTE DE RENDA ATUAL:
+Renda fixa mensal: R$ _______
+Renda variável mensal: R$ _______
+Reserva de emergência: R$ _______
+Tempo de sobrevivência sem renda: _____ meses
+
+NÍVEL DE RISCO ATUAL:
+( ) ALTO - Menos de 3 meses de reserva
+( ) MÉDIO - 3-6 meses de reserva
+( ) BAIXO - 6+ meses de reserva
+
+PRÓXIMA AÇÃO:
+________________________</pre>
+        </div>
+
+        <div class="formula-box">
+            <h4>FÓRMULA DE SUSTENTABILIDADE:</h4>
+            <strong>Estabilidade = (Renda Fixa × 12) + (Reserva ÷ Gastos Mensais × 6)</strong><br>
+            <small>Score ideal: 100+ (1 ano de renda fixa + 6 meses reserva)</small>
+        </div>
+
+        <!-- MÓDULO 2 -->
+        <div class="page-break"></div>
+        <h2>💼 MÓDULO 2: SISTEMA DE SUSTENTABILIDADE MUSICAL</h2>
+
+        <div class="summary-box">
+            <strong>OBJETIVO:</strong> Implementar estrutura que garante estabilidade crescente
+        </div>
+
+        <h3>Psicologia da Precificação Sustentável</h3>
+
+        <div class="highlight-box">
+            <h4>PRINCÍPIO FUNDAMENTAL:</h4>
+            <strong>Preço Justo = Valor Consistente + Confiança + Longevidade</strong>
+        </div>
+
+        <p>Você não precisa ser o mais caro. Você precisa ser o mais <strong>CONFIÁVEL</strong> e oferecer o melhor custo-benefício a longo prazo.</p>
+
+        <h4>MINDSET SHIFT:</h4>
+        <ul>
+            <li>❌ "Vou competir por preço mais baixo"</li>
+            <li>❌ "Vou cobrar o máximo possível"</li>
+            <li>✅ "Vou cobrar o preço justo que posso sustentar"</li>
+        </ul>
+
+        <h3>Modelo de Precificação Construtor</h3>
+
+        <h4>SISTEMA 70-20-10:</h4>
+        <ul>
+            <li><strong>70% Renda Fixa:</strong> Aulas, contratos mensais, parcerias estáveis</li>
+            <li><strong>20% Renda Previsível:</strong> Shows regulares, eventos sazonais</li>
+            <li><strong>10% Renda Variável:</strong> Projetos especiais, oportunidades</li>
+        </ul>
+
+        <div class="formula-box">
+            <h4>CÁLCULO DA HORA/AULA IDEAL:</h4>
+            <strong>(Gastos Mensais × 1.5) ÷ (Horas Disponíveis × 0.8) = Valor/Hora</strong><br>
+            Exemplo: (R$ 4.000 × 1.5) ÷ (80h × 0.8) = R$ 93,75/hora
+        </div>
+
+        <h4>TABELA DE PREÇOS SUSTENTÁVEIS:</h4>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de Serviço</th>
+                    <th>Preço Hora</th>
+                    <th>Renda Mensal</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Aula Individual</td>
+                    <td>R$ 80-120</td>
+                    <td>R$ 2.400-3.600</td>
+                    <td>FIXA (70%)</td>
+                </tr>
+                <tr>
+                    <td>Show Bar/Restaurante</td>
+                    <td>R$ 200-300</td>
+                    <td>R$ 800-1.200</td>
+                    <td>PREVISÍVEL (20%)</td>
+                </tr>
+                <tr>
+                    <td>Evento Casamento</td>
+                    <td>R$ 250-400</td>
+                    <td>R$ 500-800</td>
+                    <td>PREVISÍVEL (20%)</td>
+                </tr>
+                <tr>
+                    <td>Projetos Especiais</td>
+                    <td>R$ 300-500</td>
+                    <td>R$ 300-500</td>
+                    <td>VARIÁVEL (10%)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Cases de Sucesso</h3>
+
+        <div class="exercise-box">
+            <div class="exercise-title">CASE CARLOS (PIANISTA)</div>
+            <p><strong>Situação:</strong> Instabilidade financeira, renda oscilando R$ 1.200-4.800</p>
+            <p><strong>Aplicação:</strong> Sistema 70-20-10 com foco em aulas regulares</p>
+            <p><strong>Resultado:</strong> R$ 4.500 estáveis há 18 meses com apenas 4h/dia</p>
+            <span class="stability-indicator">RISCO ZERO</span>
+        </div>
+
+        <div class="exercise-box">
+            <div class="exercise-title">CASE LUCIA (PROFESSORA MUSICAL)</div>
+            <p><strong>Situação:</strong> Boa técnica, mas sem estrutura de negócio</p>
+            <p><strong>Aplicação:</strong> Escola musical própria + parcerias educacionais</p>
+            <p><strong>Resultado:</strong> R$ 6.200 mensais previsíveis + crescimento sustentável</p>
+            <span class="stability-indicator">RISCO BAIXO</span>
+        </div>
+
+        <div class="exercise-box">
+            <div class="exercise-title">CASE JOÃO (MULTI-INSTRUMENTISTA)</div>
+            <p><strong>Situação:</strong> Talento técnico, mas dependente de shows esporádicos</p>
+            <p><strong>Aplicação:</strong> Portfolio diversificado com múltiplas fontes</p>
+            <p><strong>Resultado:</strong> 70% redução de risco + renda 40% maior</p>
+            <span class="stability-indicator">RISCO BAIXO</span>
+        </div>
+
+        <!-- MÓDULO 3 -->
+        <div class="page-break"></div>
+        <h2>🤝 MÓDULO 3: SCRIPT DE CONFIANÇA GRADUAL</h2>
+
+        <div class="summary-box">
+            <strong>OBJETIVO:</strong> Dominar abordagem de vendas baseada em confiança e segurança
+        </div>
+
+        <h3>Psicologia da Negociação Construtor</h3>
+
+        <h4>PRINCÍPIOS NEUROLÓGICOS:</h4>
+        <ol>
+            <li><strong>Transparência gera confiança:</strong> Seja claro sobre processo e expectativas</li>
+            <li><strong>Evidência social:</strong> Use histórico e depoimentos reais</li>
+            <li><strong>Sem pressão:</strong> Ofereça tempo para reflexão</li>
+            <li><strong>Foque nos benefícios:</strong> Segurança, consistência, tranquilidade</li>
+        </ol>
+
+        <h3>Script de Confiança (85% de Fechamento)</h3>
+
+        <div class="script-container">
+            <div class="script-step">
+                <div class="exercise-title">ABERTURA SEGURA</div>
+                <p><strong>CLIENTE:</strong> "Preciso de um músico para..."</p>
+                <div class="dialogue">
+                    <strong>VOCÊ:</strong> "Vamos planejar isso com cuidado. Me fale sobre o evento e o que é importante para você dar certo."<br>
+                    <em>[Escuta ativamente, faz perguntas sobre expectativas]</em>
+                </div>
+            </div>
+
+            <div class="script-step">
+                <div class="exercise-title">ANCORAGEM DE GARANTIAS</div>
+                <div class="dialogue">
+                    "Olha, [NOME], trabalho com música há [X] anos e já fiz mais de [Y] eventos similares. 
+                    Meu foco é sempre garantir que tudo saia exatamente como planejado. 
+                    Posso te mostrar depoimentos de outros clientes e explicar todo o meu processo."
+                </div>
+            </div>
+
+            <div class="script-step">
+                <div class="exercise-title">REDUÇÃO DE RISCOS</div>
+                <div class="dialogue">
+                    "Para você ter total segurança, eu trabalho assim: 
+                    [explique seu processo passo a passo]. 
+                    Tenho backup de equipamentos, chegada com antecedência, 
+                    e posso fornecer referências de clientes recentes."
+                </div>
+            </div>
+
+            <div class="script-step">
+                <div class="exercise-title">TRATAMENTO DE OBJEÇÕES</div>
+                <p><strong>Se disser "vou pesquisar outros":</strong></p>
+                <div class="dialogue">
+                    "Claro, é importante pesquisar mesmo. Quando você conversar com outros músicos, 
+                    pergunta sobre backup de equipamento, experiência com eventos similares, 
+                    e se eles chegam cedo para testar tudo. São detalhes que fazem diferença."
+                </div>
+            </div>
+
+            <div class="script-step">
+                <div class="exercise-title">FECHAMENTO GRADUAL</div>
+                <div class="dialogue">
+                    "Quando você se sentir confortável com a decisão, 
+                    posso reservar a data. Não há pressa, mas me avisa 
+                    até [data] para eu não assumir outro compromisso."
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>TAXA DE FECHAMENTO: 85%</strong><br>
+                <small>(testado com 52 Construtores)</small>
+            </div>
+        </div>
+
+        <!-- MÓDULO 4 -->
+        <div class="page-break"></div>
+        <h2>📅 MÓDULO 4: PLANO DE SUSTENTABILIDADE - 12 MESES</h2>
+
+        <div class="summary-box">
+            <strong>OBJETIVO:</strong> Executar estratégia gradual de construção sustentável
+        </div>
+
+        <div class="highlight-box">
+            <h3>🎯 META FINAL</h3>
+            <strong>Carreira musical sólida com renda previsível e crescimento sustentável</strong>
+        </div>
+
+        <h4>INDICADORES DE SUCESSO:</h4>
+        <ul class="checklist">
+            <li>70% da renda de fontes fixas</li>
+            <li>Reserva de emergência para 6+ meses</li>
+            <li>Clientes fiéis há 2+ anos</li>
+            <li>Crescimento anual de 20-30%</li>
+            <li>Zero meses com renda abaixo do mínimo</li>
+        </ul>
+
+        <h3>Cronograma de 4 Trimestres</h3>
+
+        <h4>🎯 TRIMESTRE 1: ANÁLISE E PLANEJAMENTO SEGURO (Meses 1-3)</h4>
+        <span class="risk-level">RISCO: MUITO BAIXO</span>
+
+        <div class="exercise-box">
+            <strong>MÊS 1: DIAGNÓSTICO COMPLETO</strong>
+            <ul class="checklist">
+                <li>Análise financeira atual (renda, gastos, reservas)</li>
+                <li>Auditoria de competências técnicas</li>
+                <li>Mapeamento de clientes e relacionamentos</li>
+                <li>Identificação de oportunidades seguras</li>
+            </ul>
+
+            <strong>MÊS 2: ESTRUTURAÇÃO BÁSICA</strong>
+            <ul class="checklist">
+                <li>Definição de preços sustentáveis</li>
+                <li>Criação de materiais profissionais</li>
+                <li>Sistema de controle financeiro</li>
+                <li>Processo de atendimento padronizado</li>
+            </ul>
+
+            <strong>MÊS 3: PRIMEIROS TESTES</strong>
+            <ul class="checklist">
+                <li>Aplicação de nova precificação</li>
+                <li>Teste dos scripts de confiança</li>
+                <li>Validação com clientes atuais</li>
+                <li>Ajustes baseados nos resultados</li>
+            </ul>
+        </div>
+
+        <h4>⚡ TRIMESTRE 2: IMPLEMENTAÇÃO GRADUAL (Meses 4-6)</h4>
+        <span class="risk-level">RISCO: BAIXO</span>
+
+        <div class="exercise-box">
+            <strong>MÊS 4-5: EXPANSÃO CONTROLADA</strong>
+            <ul class="checklist">
+                <li>Aumento gradual da base de alunos</li>
+                <li>Busca por contratos fixos/mensais</li>
+                <li>Desenvolvimento de parcerias estratégicas</li>
+                <li>Melhoria contínua dos processos</li>
+            </ul>
+
+            <strong>MÊS 6: ESTABILIZAÇÃO</strong>
+            <ul class="checklist">
+                <li>Consolidação da renda fixa em 50%+</li>
+                <li>Sistema de indicações funcionando</li>
+                <li>Backup financeiro estabelecido</li>
+                <li>Processos documentados e testados</li>
+            </ul>
+        </div>
+
+        <h4>🏗️ TRIMESTRE 3: CONSOLIDAÇÃO E AJUSTES (Meses 7-9)</h4>
+        <span class="risk-level">RISCO: BAIXO</span>
+
+        <div class="exercise-box">
+            <strong>MÊS 7-8: OTIMIZAÇÃO</strong>
+            <ul class="checklist">
+                <li>Análise de resultados trimestrais</li>
+                <li>Ajustes na estratégia</li>
+                <li>Eliminação de clientes/projetos não-rentáveis</li>
+                <li>Foco nos 20% de clientes que geram 80% da renda</li>
+            </ul>
+
+            <strong>MÊS 9: PREPARAÇÃO PARA EXPANSÃO</strong>
+            <ul class="checklist">
+                <li>Meta: 70% de renda fixa alcançada</li>
+                <li>Sistema escalável testado e aprovado</li>
+                <li>Reserva de emergência para 4+ meses</li>
+                <li>Plano de expansão para T4 validado</li>
+            </ul>
+        </div>
+
+        <h4>👑 TRIMESTRE 4: EXPANSÃO CONTROLADA (Meses 10-12)</h4>
+        <span class="risk-level">RISCO: BAIXO</span>
+
+        <div class="exercise-box">
+            <strong>MÊS 10-11: CRESCIMENTO SUSTENTÁVEL</strong>
+            <ul class="checklist">
+                <li>Expansão gradual da oferta de serviços</li>
+                <li>Aumento controlado de preços (10-15%)</li>
+                <li>Novas fontes de renda fixa</li>
+                <li>Automação de processos operacionais</li>
+            </ul>
+
+            <strong>MÊS 12: AVALIAÇÃO E PLANEJAMENTO ANO 2</strong>
+            <ul class="checklist">
+                <li>Análise completa dos 12 meses</li>
+                <li>Meta: renda 25-30% superior ao início</li>
+                <li>Reserva para 6+ meses de despesas</li>
+                <li>Plano estratégico para ano seguinte</li>
+            </ul>
+        </div>
+
+        <!-- MÓDULO 5 - FERRAMENTAS -->
+        <div class="page-break"></div>
+        <h2>🛠️ MÓDULO 5: FERRAMENTAS E TEMPLATES</h2>
+
+        <h3>Planilha de Controle Financeiro Musical</h3>
+
+        <div class="exercise-box">
+            <pre>CONTROLE FINANCEIRO MUSICAL - MÊS: ________
+
+RECEITAS:
+• Aulas Fixas (70%): R$ _______
+• Shows Regulares (20%): R$ _______
+• Projetos Especiais (10%): R$ _______
+• TOTAL RECEITA: R$ _______
+
+DESPESAS:
+• Pessoais: R$ _______
+• Equipamentos: R$ _______
+• Marketing: R$ _______
+• Transporte: R$ _______
+• TOTAL DESPESAS: R$ _______
+
+RESULTADO:
+• LUCRO: R$ _______
+• % para Reserva (20%): R$ _______
+• Disponível: R$ _______
+
+INDICADORES:
+• % Renda Fixa: _____%
+• Meses de Reserva: _____
+• Crescimento vs mês anterior: _____%</pre>
+        </div>
+
+        <h3>Template de Proposta Construtor</h3>
+
+        <div class="exercise-box">
+            <pre>PROPOSTA MUSICAL PROFISSIONAL
+
+Para: _________________________________
+Serviço: ______________________________
+Data/Período: _________________________
+
+NOSSA EXPERIÊNCIA:
+• _____ anos atuando profissionalmente
+• Mais de _____ eventos realizados
+• Especialista em [seu estilo/gênero]
+• Formação/certificações: ______________
+
+O QUE ESTÁ INCLUÍDO:
+• Repertório adequado ao evento
+• Equipamento próprio testado
+• Chegada com 1h de antecedência
+• Setup e teste completo
+• Backup de equipamentos
+• Suporte durante todo o evento
+
+INVESTIMENTO:
+R$ ____________ (valor total)
+
+FORMA DE PAGAMENTO:
+• 50% na confirmação (reserva da data)
+• 50% no dia do evento
+
+GARANTIAS:
+• Pontualidade garantida
+• Qualidade sonora profissional
+• Backup de equipamentos
+• Experiência comprovada
+
+PRÓXIMOS PASSOS:
+1. Confirme se a proposta atende suas necessidades
+2. Posso fornecer referências de clientes recentes
+3. Prazo para confirmação: ___/___/___
+
+Atenciosamente,
+[Seu nome e contato]</pre>
+        </div>
+
+        <h3>Checklist de Sustentabilidade</h3>
+
+        <div class="exercise-box">
+            <div class="exercise-title">CHECKLIST MENSAL - SUSTENTABILIDADE</div>
+            
+            <strong>FINANCEIRO:</strong>
+            <ul class="checklist">
+                <li>70%+ da renda de fontes fixas</li>
+                <li>Reserva aumentando mensalmente</li>
+                <li>Despesas controladas</li>
+                <li>Margem de lucro > 30%</li>
+            </ul>
+
+            <strong>OPERACIONAL:</strong>
+            <ul class="checklist">
+                <li>Todos os compromissos cumpridos</li>
+                <li>Equipamentos funcionando perfeitamente</li>
+                <li>Agenda organizada</li>
+                <li>Sistema de backup testado</li>
+            </ul>
+
+            <strong>RELACIONAMENTO:</strong>
+            <ul class="checklist">
+                <li>Clientes satisfeitos (feedback positivo)</li>
+                <li>Novas indicações recebidas</li>
+                <li>Relacionamentos de longo prazo mantidos</li>
+                <li>Taxa de renovação > 80%</li>
+            </ul>
+        </div>
+
+        <!-- MÓDULO 6 - PSICOLOGIA -->
+        <div class="page-break"></div>
+        <h2>🧠 MÓDULO 6: PSICOLOGIA DO CONSTRUTOR</h2>
+
+        <h3>Mindset do Construtor</h3>
+
+        <h4>CRENÇAS FUNDAMENTAIS:</h4>
+        <ol>
+            <li><strong>"Estabilidade me permite ser mais criativo"</strong></li>
+            <li><strong>"Clientes valorizam consistência e confiança"</strong></li>
+            <li><strong>"Crescimento gradual é crescimento sustentável"</strong></li>
+            <li><strong>"Meu trabalho melhora com segurança financeira"</strong></li>
+        </ol>
+
+        <div class="highlight-box">
+            <h4>MANTRAS DIÁRIOS:</h4>
+            <p><em>"Construo algo que dura."</em></p>
+            <p><em>"Cada dia sou mais sólido e confiável."</em></p>
+            <p><em>"Minha estabilidade beneficia todos."</em></p>
+            <p><em>"Crescimento lento é crescimento seguro."</em></p>
+        </div>
+
+        <h3>Tratamento de Ansiedades</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>PREOCUPAÇÃO COMUM</th>
+                    <th>REFRAME CONSTRUTOR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>"Estou crescendo muito devagar"</td>
+                    <td>"Estou crescendo no ritmo certo para mim"</td>
+                </tr>
+                <tr>
+                    <td>"Outros estão ganhando mais rápido"</td>
+                    <td>"Minha base é mais sólida que a deles"</td>
+                </tr>
+                <tr>
+                    <td>"E se surgir uma crise?"</td>
+                    <td>"Estou preparado com minha reserva"</td>
+                </tr>
+                <tr>
+                    <td>"Deveria arriscar mais?"</td>
+                    <td>"Minha estratégia já é comprovada"</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Sistemas de Segurança</h3>
+
+        <h4>REDE DE PROTEÇÃO FINANCEIRA:</h4>
+        <ul>
+            <li><strong>Nível 1:</strong> Reserva para 3 meses de despesas</li>
+            <li><strong>Nível 2:</strong> Reserva para 6 meses de despesas</li>
+            <li><strong>Nível 3:</strong> Renda passiva cobrindo 50% das despesas</li>
+            <li><strong>Nível 4:</strong> Múltiplas fontes de renda independentes</li>
+        </ul>
+
+        <h4>REDE DE PROTEÇÃO PROFISSIONAL:</h4>
+        <ul>
+            <li><strong>Backup de equipamentos</strong> para todos os shows</li>
+            <li><strong>Lista de músicos substitutos</strong> em caso de emergência</li>
+            <li><strong>Seguro de equipamentos</strong> e responsabilidade civil</li>
+            <li><strong>Contratos claros</strong> protegendo ambas as partes</li>
+        </ul>
+
+        <!-- MÓDULO 7 - MÉTRICAS -->
+        <div class="page-break"></div>
+        <h2>📈 MÓDULO 7: MÉTRICAS E OTIMIZAÇÃO</h2>
+
+        <h3>Dashboard de Sustentabilidade</h3>
+
+        <div class="exercise-box">
+            <pre>MÊS: ________
+
+ESTABILIDADE FINANCEIRA:
+• % Renda fixa: ______%
+• Meses de reserva: ______
+• Variação mensal: ______%
+• Score de sustentabilidade: ______ (meta: 100+)
+
+QUALIDADE DO SERVIÇO:
+• Clientes atendidos: ______
+• Satisfação média (1-10): ______
+• Indicações recebidas: ______
+• Renovações/recontratações: ______
+
+CRESCIMENTO:
+• Renda vs mês anterior: ______%
+• Novos clientes: ______
+• Precificação média: R$ ______
+• Horas trabalhadas/semana: ______</pre>
+        </div>
+
+        <h3>Indicadores de Sucesso</h3>
+
+        <div class="stability-indicator">VERDE</div>
+        <ul>
+            <li><strong>Renda fixa > 70%:</strong> Base sólida estabelecida</li>
+            <li><strong>Reserva > 6 meses:</strong> Segurança financeira confirmada</li>
+            <li><strong>Satisfação > 9/10:</strong> Qualidade reconhecida</li>
+            <li><strong>Crescimento 20%+ ao ano:</strong> Progresso sustentável</li>
+        </ul>
+
+        <div class="risk-level">AMARELO - ATENÇÃO</div>
+        <ul>
+            <li><strong>Renda fixa 50-70%:</strong> Melhorar estabilidade</li>
+            <li><strong>Reserva 3-6 meses:</strong> Aumentar segurança</li>
+            <li><strong>Satisfação 7-9/10:</strong> Aprimorar qualidade</li>
+            <li><strong>Crescimento 10-20%:</strong> Acelerar gradualmente</li>
+        </ul>
+
+        <h3>Plano de Otimização Contínua</h3>
+
+        <div class="exercise-box">
+            <div class="exercise-title">REVISÃO TRIMESTRAL</div>
+            
+            <strong>ANÁLISE:</strong>
+            <ul class="checklist">
+                <li>Meta atingida? Se não, qual o gap?</li>
+                <li>Que estratégias funcionaram melhor?</li>
+                <li>Que obstáculos surgiram?</li>
+                <li>Como posso melhorar sem aumentar riscos?</li>
+            </ul>
+
+            <strong>AJUSTES:</strong>
+            <ul class="checklist">
+                <li>Focar no que está funcionando</li>
+                <li>Eliminar o que não agrega valor</li>
+                <li>Pequenos experimentos controlados</li>
+                <li>Manter base sólida intacta</li>
+            </ul>
+
+            <strong>PRÓXIMO TRIMESTRE:</strong>
+            <ul class="checklist">
+                <li>Uma melhoria principal por vez</li>
+                <li>Meta 5-10% superior ao anterior</li>
+                <li>Mesmo nível de risco ou menor</li>
+                <li>Validação antes de implementação</li>
+            </ul>
+        </div>
+
+        <!-- CONCLUSÃO -->
+        <div class="page-break"></div>
+        <h2>🎯 CONCLUSÃO: SEU PLANO DE AÇÃO</h2>
+
+        <h3>Próximos 30 Dias (Implementação SEGURA)</h3>
+
+        <div class="exercise-box">
+            <h4>SEMANA 1:</h4>
+            <ul class="checklist">
+                <li>Complete análise financeira atual</li>
+                <li>Calcule sua reserva de emergência</li>
+                <li>Defina preços sustentáveis</li>
+            </ul>
+
+            <h4>SEMANA 2:</h4>
+            <ul class="checklist">
+                <li>Crie sistema de controle financeiro</li>
+                <li>Pratique scripts de confiança</li>
+                <li>Configure backup de equipamentos</li>
+            </ul>
+
+            <h4>SEMANA 3:</h4>
+            <ul class="checklist">
+                <li>Aplique nova abordagem com 3 clientes</li>
+                <li>Analise resultados e ajuste</li>
+                <li>Documente o que funciona</li>
+            </ul>
+
+            <h4>SEMANA 4:</h4>
+            <ul class="checklist">
+                <li>Planeje metas do próximo mês</li>
+                <li>Estabeleça sistema de métricas</li>
+                <li>Prepare para expansão gradual</li>
+            </ul>
+        </div>
+
+        <h3>Compromisso do Construtor</h3>
+
+        <div class="exercise-box">
+            <pre>EU, _________________________________, 
+me comprometo a implementar o Sistema 
+Construtor Musical nos próximos 12 meses.
+
+Vou focar em estabilidade, crescimento 
+gradual e sustentabilidade a longo prazo.
+
+Em 12 meses, terei uma carreira musical 
+sólida, previsível e em crescimento 
+constante.
+
+Vou construir algo que dura.
+
+Assinatura: ________________________
+Data: ______________________________</pre>
+        </div>
+
+        <!-- CALL TO ACTION -->
+        <div class="page-break"></div>
+        <div class="highlight-box">
+            <h2>🟡 CERTIFICAÇÃO CONSTRUTOR</h2>
+            <h3>Você completou com sucesso o treinamento para músicos tipo S.</h3>
+            
+            <p><strong>Agora você possui:</strong></p>
+            <ul style="text-align: left;">
+                <li>✅ Framework de sustentabilidade musical</li>
+                <li>✅ Sistema de precificação equilibrada</li>
+                <li>✅ Scripts de confiança validados</li>
+                <li>✅ Plano estratégico de 12 meses</li>
+                <li>✅ Ferramentas práticas de controle</li>
+                <li>✅ Mindset de construtor estabelecido</li>
+            </ul>
+
+            <h3>CONSTRUA SÓLIDO. CRESÇA GRADUAL. SEJA SUSTENTÁVEL.</h3>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <strong>Autor:</strong> Edilson Morais | <strong>MAESTRO PALCO</strong><br>
+            <strong>Data:</strong> 08/05/2026<br>
+            <strong>Páginas:</strong> 52 | <strong>Tempo de leitura:</strong> 3h15min<br>
+            <strong>Implementação:</strong> 12 meses para resultados sustentáveis
+        </div>
+    </div>
+
+    <!-- SCRIPT PARA OTIMIZAÇÕES -->
+    <script>
+        // Otimizações para PDF
+        function printToPDF() {
+            window.print();
+        }
+
+        // Remove elementos visuais para impressão
+        window.addEventListener('beforeprint', function() {
+            document.body.style.background = 'white';
+            const floating = document.querySelector('.floating-elements');
+            if (floating) floating.style.display = 'none';
+        });
+
+        window.addEventListener('afterprint', function() {
+            document.body.style.background = '';
+            const floating = document.querySelector('.floating-elements');
+            if (floating) floating.style.display = 'block';
+        });
+
+        // Animações suaves para elementos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer para animações graduais
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observar elementos animáveis com delay menor para suavidade
+            document.querySelectorAll('.summary-box, .exercise-box, .formula-box, .highlight-box, .script-container').forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(el);
+            });
+        });
+
+        // Função para calcular score de sustentabilidade
+        function calcularSustentabilidade() {
+            const rendaFixa = prompt("Digite sua renda fixa mensal (R$):");
+            const gastosMensais = prompt("Digite seus gastos mensais (R$):");
+            const reserva = prompt("Digite sua reserva atual (R$):");
+            
+            if (rendaFixa && gastosMensais && reserva) {
+                const score = (parseFloat(rendaFixa) * 12) + (parseFloat(reserva) / parseFloat(gastosMensais) * 6);
+                const nivel = score >= 100 ? "EXCELENTE" : score >= 70 ? "BOM" : score >= 40 ? "REGULAR" : "CRÍTICO";
+                
+                alert(`Seu Score de Sustentabilidade: ${score.toFixed(1)} - Nível: ${nivel}\n\nMeta: 100+ para sustentabilidade plena`);
+            }
+        }
+
+        // Adicionar função ao contexto global para uso opcional
+        window.calcularSustentabilidade = calcularSustentabilidade;
+    </script>
+</body>
+</html>

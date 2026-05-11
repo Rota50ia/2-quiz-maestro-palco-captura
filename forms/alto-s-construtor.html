@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALTO S — O Construtor Musical</title>
+<meta name="description" content="Para músicos colaborativos que valorizam estabilidade e harmonia. Receba estratégias para construir uma carreira sólida e duradoura.">
+
+<!-- SEO — Canonical & Indexação -->
+<link rel="canonical" href="https://quiz-maestro-palco.rota50ia.com/alto-s">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Edilson Morais">
+<meta name="theme-color" content="#FACC15">
+
+<!-- Open Graph — Facebook, WhatsApp, LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://quiz-maestro-palco.rota50ia.com/alto-s">
+<meta property="og:title" content="ALTO S — O Construtor Musical">
+<meta property="og:description" content="Para músicos colaborativos que valorizam estabilidade e harmonia. Receba estratégias para construir uma carreira sólida e duradoura.">
+<meta property="og:image" content="https://quiz-maestro-palco.rota50ia.com/og-alto-s.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="MAESTRO PALCO">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '294131638634570');
+fbq('track', 'PageView');
+
+// Evento específico ALTO S
+fbq('track', 'ViewContent', {
+  content_name: 'ALTO S - Construtor Musical',
+  personality_type: 'S',
+  neurotransmitter: 'serotonin',
+  value: 28.00,
+  currency: 'BRL'
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=294131638634570&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SXXB0S0NPL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-SXXB0S0NPL");
+
+// Google Ads Conversion Tracking
+gtag("config", "AW-CONVERSION_ID");
+
+// Evento específico ALTO S
+gtag("event", "page_view", {
+  page_title: "MAESTRO PALCO - ALTO S Construtor",
+  personality_type: "S",
+  neurotransmitter_focus: "serotonin",
+  content_value: 28.00
+});
+</script>
+<!-- End Google Analytics -->
+
+<style>
+/* ===== DESIGN TOKENS ALTO S ===== */
+:root {
+  /* ALTO S - Amarelo Estável */
+  --s-primary: #FACC15;
+  --s-primary-dark: #EAB308;
+  --s-primary-light: #FEF3C7;
+  --s-accent: #F59E0B;
+  --s-glow: rgba(250, 204, 21, 0.25);
+  
+  /* Surfaces */
+  --surface-card: #111827;
+  --surface-elevated: #1F2937;
+  --surface-overlay: rgba(0, 0, 0, 0.8);
+  
+  /* Text */
+  --text-primary: #F9FAFB;
+  --text-secondary: #D1D5DB;
+  --text-muted: #9CA3AF;
+  
+  /* Spacing */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px;
+  --sp-12: 48px; --sp-16: 64px;
+  
+  /* Typography */
+  --font-display: 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  
+  /* Borders */
+  --border-radius: 12px;
+  --border-soft: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== BASE ===== */
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, #1C1917 0%, #292524 100%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-6);
+}
+
+/* ===== FORM CONTAINER ===== */
+.form-container {
+  background: var(--surface-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--border-radius);
+  padding: var(--sp-10);
+  max-width: 640px;
+  width: 100%;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px var(--s-glow);
+  position: relative;
+}
+
+.form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--s-primary), var(--s-accent));
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+/* ===== HEADER ===== */
+.form-header {
+  text-align: center;
+  margin-bottom: var(--sp-8);
+}
+
+.personality-badge {
+  display: inline-block;
+  background: var(--s-primary);
+  color: #1F2937;
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-4);
+}
+
+.form-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-4);
+  line-height: 1.1;
+}
+
+.form-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ===== FORM STYLES ===== */
+.embedded-form {
+  margin-top: var(--sp-6);
+}
+
+/* Override ActiveCampaign styles */
+#_form_7_ {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  font-family: var(--font-body) !important;
+}
+
+#_form_7_ ._form-content {
+  background: transparent !important;
+}
+
+#_form_7_ ._form-title {
+  display: none !important;
+}
+
+#_form_7_ ._form_element ._form-label {
+  color: var(--text-secondary) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  margin-bottom: var(--sp-2) !important;
+  font-family: var(--font-body) !important;
+}
+
+#_form_7_ input[type="text"],
+#_form_7_ input[type="email"],
+#_form_7_ input[type="tel"],
+#_form_7_ textarea {
+  background: var(--surface-elevated) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: var(--border-radius) !important;
+  color: var(--text-primary) !important;
+  padding: var(--sp-4) !important;
+  font-size: 16px !important;
+  font-family: var(--font-body) !important;
+  width: 100% !important;
+  transition: all 0.2s ease !important;
+}
+
+#_form_7_ input[type="text"]:focus,
+#_form_7_ input[type="email"]:focus,
+#_form_7_ input[type="tel"]:focus,
+#_form_7_ textarea:focus {
+  outline: none !important;
+  border-color: var(--s-primary) !important;
+  box-shadow: 0 0 0 3px var(--s-glow) !important;
+}
+
+#_form_7_ input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+#_form_7_ ._submit {
+  background: linear-gradient(135deg, var(--s-primary), var(--s-primary-dark)) !important;
+  border: none !important;
+  border-radius: var(--border-radius) !important;
+  color: #1F2937 !important;
+  padding: var(--sp-4) var(--sp-8) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  font-family: var(--font-display) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  width: 100% !important;
+  margin-top: var(--sp-4) !important;
+  box-shadow: 0 4px 20px var(--s-glow) !important;
+}
+
+#_form_7_ ._submit:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 30px var(--s-glow) !important;
+  background: linear-gradient(135deg, var(--s-primary-dark), var(--s-primary)) !important;
+}
+
+#_form_7_ .sms_consent_checkbox {
+  margin: var(--sp-4) 0 !important;
+  padding: var(--sp-4) !important;
+  background: var(--surface-elevated) !important;
+  border-radius: var(--border-radius) !important;
+  border: 1px solid var(--border-soft) !important;
+}
+
+#_form_7_ .sms_consent_message {
+  color: var(--text-muted) !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+}
+
+#_form_7_ ._form-branding {
+  opacity: 0.5 !important;
+  margin-top: var(--sp-6) !important;
+  text-align: center !important;
+}
+
+/* ===== FIX TELEFONE INTERNACIONAL - VERSÃO CORRIGIDA ===== */
+#_form_7_ .iti {
+  width: 100% !important;
+  display: block !important;
+  position: relative !important;
+}
+
+#_form_7_ .iti input[type="tel"] {
+  width: 100% !important;
+  padding: var(--sp-4) !important;
+  padding-left: 70px !important;
+  background: var(--surface-elevated) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: var(--border-radius) !important;
+  color: var(--text-primary) !important;
+  font-size: 16px !important;
+  font-family: var(--font-body) !important;
+  box-sizing: border-box !important;
+  line-height: normal !important;
+  height: auto !important;
+}
+
+#_form_7_ .iti input[type="tel"]:focus {
+  outline: none !important;
+  border-color: var(--s-primary) !important;
+  box-shadow: 0 0 0 3px var(--s-glow) !important;
+}
+
+#_form_7_ .iti__flag-container {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 60px !important;
+  z-index: 2 !important;
+}
+
+#_form_7_ .iti__selected-flag {
+  width: 100% !important;
+  height: 100% !important;
+  background: var(--surface-elevated) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+  border-right: 1px solid var(--border-soft) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+
+#_form_7_ .iti--allow-dropdown .iti__selected-flag:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+#_form_7_ .iti__arrow {
+  border-top-color: var(--text-secondary) !important;
+  margin-left: 4px !important;
+}
+
+#_form_7_ .iti--separate-dial-code .iti__selected-dial-code {
+  color: var(--text-secondary) !important;
+  font-size: 12px !important;
+}
+
+#_form_7_ .iti__country-list {
+  background: var(--surface-card) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: var(--border-radius) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+  z-index: 9999 !important;
+  max-height: 200px !important;
+  overflow-y: auto !important;
+}
+
+#_form_7_ .iti__country {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  padding: 8px 12px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+#_form_7_ .iti__country:hover,
+#_form_7_ .iti__country:focus {
+  background: var(--surface-elevated) !important;
+}
+
+#_form_7_ .iti__country-name {
+  color: var(--text-primary) !important;
+}
+
+#_form_7_ .iti__dial-code {
+  color: var(--text-secondary) !important;
+}
+
+/* ===== CARACTERÍSTICAS S ===== */
+.s-features {
+  background: var(--surface-elevated);
+  border-radius: var(--border-radius);
+  padding: var(--sp-6);
+  margin-bottom: var(--sp-6);
+  border-left: 4px solid var(--s-primary);
+}
+
+.s-features h3 {
+  color: var(--s-primary);
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin-bottom: var(--sp-3);
+  font-size: 18px;
+}
+
+.s-features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.s-features li {
+  padding: var(--sp-2) 0;
+  color: var(--text-secondary);
+  position: relative;
+  padding-left: var(--sp-6);
+}
+
+.s-features li::before {
+  content: "🏗️";
+  position: absolute;
+  left: 0;
+  color: var(--s-primary);
+  font-weight: bold;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .form-container {
+    padding: var(--sp-6);
+    margin: var(--sp-4);
+  }
+  
+  .form-title {
+    font-size: 24px;
+  }
+  
+  .form-subtitle {
+    font-size: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="form-container">
+  <div class="form-header">
+    <div class="personality-badge">ALTO S</div>
+    <h1 class="form-title">O Construtor Musical</h1>
+    <p class="form-subtitle">
+      Para músicos <strong>colaborativos</strong> que valorizam <strong>estabilidade e harmonia</strong>. 
+      Estratégias para construir uma carreira sólida e duradoura.
+    </p>
+  </div>
+
+  <div class="s-features">
+    <h3>🏗️ Você receberá estratégias para:</h3>
+    <ul>
+      <li>Construção de carreira estável e sustentável</li>
+      <li>Colaboração efetiva e trabalho em equipe</li>
+      <li>Desenvolvimento de relacionamentos duradouros</li>
+      <li>Planejamento de longo prazo e metas consistentes</li>
+      <li>Apoio e mentoria para outros músicos</li>
+    </ul>
+  </div>
+
+  <div class="embedded-form">
+    <div class="_form_7"></div>
+    <script src="https://edilsomdil79386.activehosted.com/f/embed.php?id=7" charset="utf-8"></script>
+  </div>
+</div>
+
+<script>
+// Tracking específico para ALTO S
+document.addEventListener('DOMContentLoaded', function() {
+  // Track form interactions
+  const form = document.querySelector('#_form_7_');
+  if (form) {
+    form.addEventListener('submit', function() {
+      fbq('track', 'Lead', {
+        content_name: 'ALTO S Construtor Lead',
+        personality_type: 'S'
+      });
+      
+      gtag('event', 'generate_lead', {
+        event_category: 'Form',
+        event_label: 'ALTO S',
+        personality_type: 'S'
+      });
+    });
+  }
+});
+</script>
+</body>
+</html>

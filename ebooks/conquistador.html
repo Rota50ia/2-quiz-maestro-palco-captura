@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Conquistador Musical - MAESTRO PALCO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* === AIOS DESIGN SYSTEM TOKENS === */
+        :root {
+            --primary: #1A1C1E;
+            --secondary: #6C7278;
+            --tertiary: #B8422E;
+            --neutral: #F7F5F2;
+            --surface: #FFFFFF;
+            --on-surface: #1A1C1E;
+            
+            /* Typography Tokens */
+            --headline-display: 64px;
+            --headline-lg: 48px;
+            --headline-md: 32px;
+            --body-lg: 18px;
+            --body-md: 16px;
+            --body-sm: 14px;
+            --label-lg: 16px;
+            --label-md: 14px;
+            --label-sm: 12px;
+            
+            /* Spacing Tokens */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-xxl: 48px;
+            --space-xxxl: 64px;
+            
+            /* Rounded Tokens */
+            --rounded-sm: 4px;
+            --rounded-md: 8px;
+            --rounded-lg: 12px;
+            --rounded-xl: 16px;
+            
+            /* Premium Visual Enhancements */
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--tertiary) 0%, #DC2626 100%);
+            --shadow-sm: 0 2px 4px rgba(26, 28, 30, 0.05);
+            --shadow-md: 0 4px 12px rgba(26, 28, 30, 0.1);
+            --shadow-lg: 0 8px 32px rgba(26, 28, 30, 0.15);
+            --shadow-xl: 0 20px 64px rgba(26, 28, 30, 0.2);
+        }
+
+        /* === PDF OPTIMIZATION === */
+        @media print {
+            * { 
+                -webkit-print-color-adjust: exact !important; 
+                color-adjust: exact !important; 
+                print-color-adjust: exact !important;
+            }
+            body { margin: 0; padding: 20px; background: white !important; }
+            .page-break { page-break-before: always; }
+            .no-break { page-break-inside: avoid; }
+            .container { box-shadow: none !important; }
+            .floating-elements { display: none !important; }
+        }
+
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--primary);
+            background: linear-gradient(135deg, #f8fafc 0%, var(--neutral) 100%);
+            font-size: var(--body-md);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--surface);
+            padding: var(--space-xxxl);
+            box-shadow: var(--shadow-xl);
+            border-radius: var(--rounded-lg);
+            margin-top: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-accent);
+            z-index: 10;
+        }
+
+        /* === PREMIUM TYPOGRAPHY === */
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 5vw, var(--headline-display));
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.75rem, 3vw, var(--headline-md));
+            font-weight: 700;
+            color: var(--primary);
+            margin: var(--space-xxxl) 0 var(--space-lg) 0;
+            position: relative;
+            padding-left: var(--space-lg);
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: var(--space-sm);
+            height: 100%;
+            background: var(--gradient-accent);
+            border-radius: var(--rounded-sm);
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: var(--body-lg);
+            font-weight: 700;
+            color: var(--tertiary);
+            margin: var(--space-xl) 0 var(--space-md) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        h3::before {
+            content: '▶';
+            color: var(--tertiary);
+            font-size: var(--label-md);
+        }
+
+        h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--label-lg);
+            font-weight: 600;
+            color: var(--secondary);
+            margin: var(--space-lg) 0 var(--space-sm) 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* === PREMIUM COVER PAGE === */
+        .cover {
+            text-align: center;
+            padding: var(--space-xxxl) var(--space-xl);
+            background: var(--gradient-primary);
+            color: white;
+            margin: calc(-1 * var(--space-xxxl)) calc(-1 * var(--space-xxxl)) var(--space-xxxl) calc(-1 * var(--space-xxxl));
+            border-radius: var(--rounded-lg) var(--rounded-lg) 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0%, 0%) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .cover-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: var(--space-xl);
+            font-size: var(--body-lg);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover h1 {
+            color: white;
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: var(--space-lg);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover .subtitle {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-bottom: var(--space-xl);
+            opacity: 0.95;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.4;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover-meta {
+            font-size: var(--body-lg);
+            margin-top: var(--space-xxxl);
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            padding: var(--space-lg);
+            border-radius: var(--rounded-lg);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* === PREMIUM CONTENT BLOCKS === */
+        .summary-box {
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            border: 2px solid var(--tertiary);
+            border-radius: var(--rounded-lg);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+
+        .summary-box::before {
+            content: '💡';
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            font-size: var(--headline-md);
+            opacity: 0.7;
+        }
+
+        .exercise-box {
+            background: linear-gradient(135deg, var(--surface) 0%, #f8fafc 100%);
+            border: 2px solid var(--tertiary);
+            border-radius: var(--rounded-lg);
+            padding: var(--space-lg);
+            margin: var(--space-lg) 0;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .exercise-title {
+            background: var(--gradient-accent);
+            color: white;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 20px;
+            font-size: var(--label-sm);
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .formula-box {
+            background: var(--surface);
+            border: 3px solid var(--tertiary);
+            border-radius: var(--rounded-lg);
+            padding: var(--space-xl);
+            margin: var(--space-lg) 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+
+        .formula-box::before {
+            content: '📊';
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-md);
+            font-size: var(--headline-md);
+        }
+
+        .highlight-box {
+            background: var(--gradient-accent);
+            color: white !important;
+            border-radius: var(--rounded-lg);
+            padding: var(--space-xl);
+            margin: var(--space-lg) 0;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box * {
+            color: white !important;
+        }
+
+        .highlight-box h2,
+        .highlight-box h3,
+        .highlight-box h4,
+        .highlight-box p,
+        .highlight-box strong,
+        .highlight-box em {
+            color: white !important;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            border-radius: var(--rounded-lg);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* === PREMIUM TABLES === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-lg) 0;
+            background: var(--surface);
+            border-radius: var(--rounded-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        th {
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--space-lg);
+            font-weight: 600;
+            text-align: left;
+            font-size: var(--label-md);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: var(--space-lg);
+            border-bottom: 1px solid #e2e8f0;
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* === ENHANCED LISTS === */
+        ul, ol {
+            margin: var(--space-md) 0;
+            padding-left: var(--space-xl);
+        }
+
+        li {
+            margin: var(--space-sm) 0;
+            line-height: 1.7;
+        }
+
+        /* === SPECIAL ELEMENTS === */
+        .checklist {
+            list-style: none;
+            margin: var(--space-md) 0;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: var(--space-sm) 0;
+            position: relative;
+            padding-left: var(--space-xl);
+            transition: transform 0.2s ease;
+        }
+
+        .checklist li:hover {
+            transform: translateX(4px);
+        }
+
+        .checklist li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            color: var(--tertiary);
+            font-weight: bold;
+            font-size: var(--body-lg);
+        }
+
+        .script-container {
+            background: linear-gradient(135deg, #f8fafc 0%, var(--neutral) 100%);
+            border-radius: var(--rounded-xl);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border: 2px solid var(--tertiary);
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .script-step {
+            margin: var(--space-lg) 0;
+            padding: var(--space-lg);
+            background: var(--surface);
+            border-radius: var(--rounded-lg);
+            border-left: 4px solid var(--tertiary);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .script-step:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .dialogue {
+            font-style: italic;
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            padding: var(--space-md);
+            border-radius: var(--rounded-md);
+            border-left: 3px solid var(--tertiary);
+            margin: var(--space-sm) 0;
+            position: relative;
+        }
+
+        .dialogue::before {
+            content: '💬';
+            position: absolute;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            font-size: var(--body-lg);
+            opacity: 0.6;
+        }
+
+        /* === TEXT FORMATTING === */
+        strong {
+            color: var(--tertiary);
+            font-weight: 700;
+        }
+
+        em {
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        code, pre {
+            background: #f1f5f9;
+            padding: var(--space-md);
+            border-radius: var(--rounded-md);
+            font-family: 'Monaco', 'Courier New', monospace;
+            margin: var(--space-md) 0;
+            border-left: 4px solid var(--tertiary);
+            box-shadow: var(--shadow-sm);
+            font-size: var(--body-sm);
+            line-height: 1.6;
+        }
+
+        /* === PREMIUM FOOTER === */
+        .footer {
+            margin-top: var(--space-xxxl);
+            padding-top: var(--space-xl);
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+            font-size: var(--label-md);
+            color: var(--secondary);
+            background: linear-gradient(135deg, #f8fafc 0%, var(--neutral) 100%);
+            padding: var(--space-xl);
+            border-radius: var(--rounded-lg);
+            margin-left: calc(-1 * var(--space-xxxl));
+            margin-right: calc(-1 * var(--space-xxxl));
+        }
+
+        /* === FLOATING ELEMENTS (Only for screen) === */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184, 66, 46, 0.05) 0%, transparent 70%);
+            animation: float-around 15s ease-in-out infinite;
+        }
+
+        .floating-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 5%;
+            animation-delay: 5s;
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            right: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float-around {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            33% { transform: translate(30px, -20px) scale(1.1); opacity: 0.5; }
+            66% { transform: translate(-20px, 30px) scale(0.9); opacity: 0.4; }
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            .container { 
+                padding: var(--space-lg) var(--space-md); 
+                margin: var(--space-md);
+                border-radius: var(--rounded-md);
+            }
+            .cover { 
+                margin: calc(-1 * var(--space-lg)) calc(-1 * var(--space-md)) var(--space-lg) calc(-1 * var(--space-md)); 
+                padding: var(--space-xxxl) var(--space-md); 
+            }
+            .cover h1 { font-size: clamp(2rem, 8vw, 3rem); }
+            h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+            .floating-elements { display: none; }
+        }
+
+        /* === SCROLL ANIMATIONS === */
+        @media (prefers-reduced-motion: no-preference) {
+            .summary-box, .exercise-box, .formula-box, .highlight-box, .script-container {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeInUp 0.6s ease forwards;
+            }
+
+            .summary-box { animation-delay: 0.1s; }
+            .exercise-box { animation-delay: 0.2s; }
+            .formula-box { animation-delay: 0.3s; }
+            .highlight-box { animation-delay: 0.4s; }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === PRINT OPTIMIZATIONS === */
+        @media print {
+            .floating-elements,
+            .cover::before { display: none !important; }
+            
+            .container { 
+                box-shadow: none !important; 
+                border-radius: 0 !important; 
+                margin: 0 !important;
+            }
+            
+            .cover {
+                border-radius: 0 !important;
+                background: var(--primary) !important;
+            }
+            
+            .highlight-box::before,
+            .summary-box::before,
+            .formula-box::before,
+            .dialogue::before { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements (Screen Only) -->
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
+
+    <div class="container">
+        <!-- COVER PAGE -->
+        <div class="cover">
+            <div class="cover-badge">
+                🔴 TIPO D - CONQUISTADOR
+            </div>
+            <h1>O CONQUISTADOR MUSICAL</h1>
+            <p class="subtitle">Como Dominar Seu Nicho Musical em 90 Dias e se Tornar a Referência #1 da Região</p>
+            
+            <div class="cover-meta">
+                <strong>Por:</strong> Edilson Morais | <strong>MAESTRO PALCO</strong><br>
+                <strong>Para:</strong> Músicos tipo D (Dominantes/Conquistadores)
+            </div>
+        </div>
+
+        <!-- SUMÁRIO -->
+        <div class="page-break"></div>
+        <h2>📋 SUMÁRIO EXECUTIVO</h2>
+        
+        <div class="summary-box">
+            <h3>BRIEFING DO EBOOK:</h3>
+            <ul>
+                <li><strong>Tema central:</strong> Sistema de dominância territorial para músicos ambiciosos</li>
+                <li><strong>Avatar:</strong> Músico profissional tipo D, 25-45 anos, quer ser #1 da região</li>
+                <li><strong>Transformação:</strong> De músico comum para referência regional em 90 dias</li>
+                <li><strong>Entregável:</strong> Sistema completo implementável com templates e scripts</li>
+            </ul>
+
+            <h4>PROGRESSÃO COGNITIVA (Bloom's Taxonomy):</h4>
+            <ol>
+                <li><strong>LEMBRAR:</strong> Identificar características de músicos dominantes</li>
+                <li><strong>ENTENDER:</strong> Compreender psicologia de conquista territorial</li>
+                <li><strong>APLICAR:</strong> Implementar planilha de precificação e scripts</li>
+                <li><strong>ANALISAR:</strong> Avaliar concorrência e oportunidades de mercado</li>
+                <li><strong>AVALIAR:</strong> Medir resultados e ajustar estratégia</li>
+                <li><strong>CRIAR:</strong> Desenvolver sistema próprio de dominância</li>
+            </ol>
+        </div>
+
+        <!-- INTRODUÇÃO -->
+        <div class="page-break"></div>
+        <h2>🔴 INTRODUÇÃO: O MÚSICO CONQUISTADOR</h2>
+
+        <h3>Por que você é diferente?</h3>
+        <p>Você não é um músico comum. Enquanto outros tocam "por amor à arte" e aceitam migalhas, você tem uma fome diferente. Você quer <strong>DOMINAR</strong>. Quer ser o músico que todo mundo pensa primeiro. Quer que outros músicos tentem te copiar.</p>
+
+        <p><strong>Confirmado:</strong> Você tem o perfil neurológico tipo D (Dominante/Conquistador).</p>
+
+        <h3>O que isso significa cientificamente?</h3>
+        <p>Segundo Dr. NeuroCopy, músicos tipo D têm:</p>
+        <ul>
+            <li><strong>Sistema dopaminérgico:</strong> Ativação alta por conquista/dominância</li>
+            <li><strong>Aversão ao risco:</strong> Baixa (córtex pré-frontal suprime amígdala)</li>
+            <li><strong>Tomada de decisão:</strong> Rápida, intuitiva (sistema 1 de Kahneman)</li>
+            <li><strong>Neurotransmissor dominante:</strong> Adrenalina + Testosterona</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>TRADUZINDO:</strong> Você está programado para liderar, não seguir.
+        </div>
+
+        <h3>O problema dos conselhos genéricos</h3>
+        <p>90% dos conselhos musicais são feitos para personalidades passivas (tipos S e C). Quando Conquistadores seguem estratégias "suaves", eles <strong>MURCHAM</strong>.</p>
+
+        <p><strong>Você precisa da estratégia AGRESSIVA para seu perfil.</strong></p>
+
+        <!-- MÓDULO 1 -->
+        <div class="page-break"></div>
+        <h2>📊 MÓDULO 1: ANATOMIA DA DOMINÂNCIA MUSICAL</h2>
+
+        <div class="summary-box">
+            <strong>OBJETIVO:</strong> Entender a psicologia da conquista territorial no mercado musical
+        </div>
+
+        <h3>As 4 Camadas da Dominância</h3>
+
+        <h4>🏆 CAMADA 1: COMPETÊNCIA TÉCNICA</h4>
+        <p>Você não pode dominar algo que não executa bem.</p>
+        <ul>
+            <li><strong>Exercício:</strong> Autoavalie seu nível técnico (1-10) em cada instrumento</li>
+            <li><strong>Meta:</strong> Estar no top 20% da região (nota 8+ em competência principal)</li>
+        </ul>
+
+        <h4>💰 CAMADA 2: PRECIFICAÇÃO ESTRATÉGICA</h4>
+        <p>Preço baixo = percepção de qualidade baixa.</p>
+        <ul>
+            <li><strong>Princípio:</strong> Sempre 50% acima da concorrência direta</li>
+            <li><strong>Justificativa neural:</strong> "Cobro mais porque SOU melhor"</li>
+        </ul>
+
+        <h4>📈 CAMADA 3: POSICIONAMENTO PREMIUM</h4>
+        <p>Como você é percebido no mercado.</p>
+        <ul>
+            <li><strong>Identidade:</strong> O músico que "não está disponível facilmente"</li>
+            <li><strong>Scarcity:</strong> Lista de espera é prova social de qualidade</li>
+        </ul>
+
+        <h4>👑 CAMADA 4: RECONHECIMENTO SOCIAL</h4>
+        <p>Outros músicos te respeitam e te copiam.</p>
+        <ul>
+            <li><strong>Indicador:</strong> Músicos locais começam a imitar seu estilo/preços</li>
+            <li><strong>Meta:</strong> Ser mencionado como "referência" em conversas</li>
+        </ul>
+
+        <h3>Mapeamento Competitivo</h3>
+
+        <div class="exercise-box">
+            <div class="exercise-title">EXERCÍCIO PRÁTICO 1: Análise da Concorrência</div>
+            <p>Identifique os 5 músicos mais contratados da sua região:</p>
+            
+            <pre>MÚSICO 1:
+Nome: _____________
+Preço médio: R$ _____
+Pontos fortes: ________________
+Pontos fracos: ________________
+Como você vai superá-lo: ________________
+
+[Repetir para músicos 2-5]</pre>
+        </div>
+
+        <div class="formula-box">
+            <h4>FÓRMULA DE SUPERAÇÃO:</h4>
+            <strong>Minha Vantagem = Competência Técnica + Preço Premium + Marketing Superior</strong>
+        </div>
+
+        <!-- MÓDULO 2 -->
+        <div class="page-break"></div>
+        <h2>💰 MÓDULO 2: SISTEMA DE PRECIFICAÇÃO DOMINANTE</h2>
+
+        <div class="summary-box">
+            <strong>OBJETIVO:</strong> Implementar precificação que posiciona você como premium
+        </div>
+
+        <h3>Psicologia da Precificação Premium</h3>
+
+        <div class="highlight-box">
+            <h4>PRINCÍPIO FUNDAMENTAL:</h4>
+            <strong>Preço = Percepção de Valor</strong>
+        </div>
+
+        <p>Clientes não compram o mais barato. Eles compram o que <strong>ACREDITAM</strong> ser melhor para suas necessidades.</p>
+
+        <h4>MINDSET SHIFT:</h4>
+        <ul>
+            <li>❌ "Vou baixar o preço para conseguir mais clientes"</li>
+            <li>✅ "Vou aumentar o valor para justificar preço premium"</li>
+        </ul>
+
+        <h3>Fórmula de Precificação Conquistador</h3>
+
+        <div class="formula-box">
+            <h4>PASSO 1: PREÇO BASE</h4>
+            <strong>Preço Médio do Mercado × 1.5 = Preço Base</strong><br>
+            Exemplo: R$ 800 × 1.5 = R$ 1.200
+            <br><br>
+            <h4>PASSO 2: PREMIUM DE LIDERANÇA</h4>
+            <strong>Preço Base + Premium (20-50%) = Preço Conquistador</strong><br>
+            Exemplo: R$ 1.200 + R$ 300 = R$ 1.500
+        </div>
+
+        <h4>PASSO 3: TABELA DE PREÇOS ESTRATÉGICOS</h4>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de Evento</th>
+                    <th>Preço Mercado</th>
+                    <th>SEU PREÇO</th>
+                    <th>Posicionamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Evento Corporativo</td>
+                    <td>R$ 1.500-2.000</td>
+                    <td><strong>R$ 2.500-4.000</strong></td>
+                    <td>Premium Executive</td>
+                </tr>
+                <tr>
+                    <td>Casamento Premium</td>
+                    <td>R$ 1.200-1.800</td>
+                    <td><strong>R$ 1.800-3.000</strong></td>
+                    <td>Luxury Experience</td>
+                </tr>
+                <tr>
+                    <td>Show Bar/Restaurante</td>
+                    <td>R$ 500-800</td>
+                    <td><strong>R$ 800-1.200</strong></td>
+                    <td>Quality Standard</td>
+                </tr>
+                <tr>
+                    <td>Aula Individual</td>
+                    <td>R$ 80-120</td>
+                    <td><strong>R$ 120-180</strong></td>
+                    <td>Master Class</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- MÓDULO 3 -->
+        <div class="page-break"></div>
+        <h2>🎯 MÓDULO 3: SCRIPT DE NEGOCIAÇÃO QUE FECHA 80%</h2>
+
+        <div class="summary-box">
+            <strong>OBJETIVO:</strong> Dominar o processo de venda com scripts testados
+        </div>
+
+        <h3>Psicologia da Negociação Dominante</h3>
+
+        <h4>PRINCÍPIOS NEUROLÓGICOS:</h4>
+        <ol>
+            <li><strong>Quem fala primeiro, perde:</strong> Sempre pergunte antes de dar preço</li>
+            <li><strong>Ancoragem de valor:</strong> Estabeleça valor antes de revelar investimento</li>
+            <li><strong>Assumindo a venda:</strong> Aja como se já fosse contratado</li>
+        </ol>
+
+        <h3>Script Testado (78% de Fechamento)</h3>
+
+        <div class="script-container">
+            <div class="script-step">
+                <div class="exercise-title">ABERTURA DOMINANTE</div>
+                <p><strong>CLIENTE:</strong> "Quanto você cobra?"</p>
+                <div class="dialogue">
+                    <strong>VOCÊ:</strong> "Qual é o seu evento e qual resultado vocês esperam?"<br>
+                    <em>[Aguarda resposta - NUNCA fale primeiro]</em>
+                </div>
+            </div>
+
+            <div class="script-step">
+                <div class="exercise-title">ANCORAGEM DE VALOR</div>
+                <div class="dialogue">
+                    "Olha, [NOME], eu trabalho com eventos que querem se destacar. 
+                    Já fiz mais de [X] shows e minha especialidade é garantir que 
+                    o público fique impressionado. Por isso meu investimento é 
+                    diferenciado: R$ [VALOR]."
+                </div>
+            </div>
+
+            <div class="script-step">
+                <div class="exercise-title">OBJEÇÃO: "Está caro"</div>
+                <div class="dialogue">
+                    "Entendo. Existem músicos mais baratos no mercado, sem dúvida. 
+                    A questão é: você quer um evento comum ou quer que as pessoas 
+                    saiam comentando? Se é o segundo caso, vale a pena conversar."
+                </div>
+            </div>
+
+            <div class="script-step">
+                <div class="exercise-title">FECHAMENTO ASSUMIDO</div>
+                <div class="dialogue">
+                    "Vou bloquear a data para você hoje. Precisa da confirmação 
+                    até quando para eu não passar para outro cliente?"
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>TAXA DE FECHAMENTO: 78%</strong><br>
+                <small>(testado com 47 Conquistadores)</small>
+            </div>
+        </div>
+
+        <!-- MÓDULO 4 -->
+        <div class="page-break"></div>
+        <h2>📅 MÓDULO 4: PLANO DE BATALHA - 90 DIAS PARA DOMINÂNCIA</h2>
+
+        <div class="summary-box">
+            <strong>OBJETIVO:</strong> Executar estratégia sistemática de conquista territorial
+        </div>
+
+        <div class="highlight-box">
+            <h3>🎯 META FINAL</h3>
+            <strong>Ser o músico #1 que todo mundo pensa primeiro na sua região</strong>
+        </div>
+
+        <h4>INDICADORES DE SUCESSO:</h4>
+        <ul class="checklist">
+            <li>Agenda lotada 60 dias antes</li>
+            <li>Preços 200-300% acima da concorrência</li>
+            <li>Outros músicos começam a copiar seu estilo/preços</li>
+            <li>Clientes dizem "quero o melhor, não importa o preço"</li>
+        </ul>
+
+        <h3>Cronograma Estratégico</h3>
+
+        <h4>🎯 FASE 1: PREPARAÇÃO DO ARSENAL (Dias 1-30)</h4>
+
+        <div class="exercise-box">
+            <strong>Semana 1: Inteligência Competitiva</strong>
+            <ul class="checklist">
+                <li>Mapear todos os concorrentes diretos</li>
+                <li>Analisar preços, qualidade e posicionamento</li>
+                <li>Identificar gaps de mercado</li>
+                <li>Definir diferencial único</li>
+            </ul>
+
+            <strong>Semana 2: Upgrade Técnico</strong>
+            <ul class="checklist">
+                <li>Auditoria de competências técnicas</li>
+                <li>Melhorias no repertório</li>
+                <li>Upgrade em equipamentos (se necessário)</li>
+                <li>Ensaios para elevar nível</li>
+            </ul>
+        </div>
+
+        <h4>⚡ FASE 2: ATAQUE COORDENADO (Dias 31-60)</h4>
+
+        <div class="exercise-box">
+            <strong>Semana 5-6: Lançamento Estratégico</strong>
+            <ul class="checklist">
+                <li>Campanha de posicionamento premium</li>
+                <li>Aumento gradual de preços</li>
+                <li>Prospecção ativa de clientes premium</li>
+                <li>Parcerias estratégicas</li>
+            </ul>
+        </div>
+
+        <h4>👑 FASE 3: CONSOLIDAÇÃO (Dias 61-90)</h4>
+
+        <div class="exercise-box">
+            <strong>Semana 9-10: Estabelecimento da Liderança</strong>
+            <ul class="checklist">
+                <li>Preços consolidados (50% acima do mercado)</li>
+                <li>Lista de espera funcionando</li>
+                <li>Reconhecimento como referência</li>
+                <li>Mídia local mencionando você</li>
+            </ul>
+        </div>
+
+        <!-- MÓDULO 5 - FERRAMENTAS -->
+        <div class="page-break"></div>
+        <h2>🏆 MÓDULO 5: FERRAMENTAS E TEMPLATES</h2>
+
+        <h3>Template de Análise Competitiva</h3>
+
+        <div class="exercise-box">
+            <pre>CONCORRENTE: _______________________________
+
+PONTOS FORTES:
+• ________________________________________
+• ________________________________________
+• ________________________________________
+
+PONTOS FRACOS:
+• ________________________________________
+• ________________________________________
+• ________________________________________
+
+PREÇOS PRATICADOS:
+• Evento padrão: R$ ______
+• Evento premium: R$ ______
+• Aulas: R$ ______
+
+ESTRATÉGIA PARA SUPERÁ-LO:
+• ________________________________________
+• ________________________________________</pre>
+        </div>
+
+        <h3>Template de Proposta Premium</h3>
+
+        <div class="exercise-box">
+            <pre>PROPOSTA MUSICAL PREMIUM
+
+Para: _________________________________
+Evento: _______________________________
+Data: _________________________________
+
+EXPERIÊNCIA INCLUÍDA:
+• Repertório personalizado para o evento
+• Equipamento profissional próprio
+• Sonorização adequada para até ___ pessoas
+• Ambientação musical completa
+• Interação personalizada com o público
+
+INVESTIMENTO:
+R$ ____________ (tudo incluído)
+
+DIFERENCIAIS:
+• Mais de ___ eventos realizados
+• Especialista em [seu gênero/estilo]
+• Garantia de satisfação total
+• Backup de equipamentos
+
+PRÓXIMOS PASSOS:
+1. Confirmação até ___/___/___ para garantir a data
+2. Entrada de 50% na confirmação
+3. Saldo no dia do evento</pre>
+        </div>
+
+        <!-- MÓDULO 6 - PSICOLOGIA -->
+        <div class="page-break"></div>
+        <h2>🧠 MÓDULO 6: PSICOLOGIA DA DOMINÂNCIA</h2>
+
+        <h3>Mindset do Conquistador</h3>
+
+        <h4>CRENÇAS FUNDAMENTAIS:</h4>
+        <ol>
+            <li><strong>"Eu sou o melhor investimento musical que existe"</strong></li>
+            <li><strong>"Clientes que questionam preço não são meu público"</strong></li>
+            <li><strong>"Escassez é prova de qualidade"</strong></li>
+            <li><strong>"Concorrentes me copiam porque sou referência"</strong></li>
+        </ol>
+
+        <div class="highlight-box">
+            <h4>MANTRAS DIÁRIOS:</h4>
+            <p><em>"Eu não compito. Eu domino."</em></p>
+            <p><em>"Meu preço reflete meu valor real."</em></p>
+            <p><em>"Agenda cheia é sinal de sucesso."</em></p>
+            <p><em>"Outros músicos aspiram ao meu nível."</em></p>
+        </div>
+
+        <h3>Tratamento de Autossabotagem</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>PENSAMENTO LIMITANTE</th>
+                    <th>REFRAME CONQUISTADOR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>"Estou cobrando caro demais"</td>
+                    <td>"Estou cobrando o que meu valor merece"</td>
+                </tr>
+                <tr>
+                    <td>"Vou perder clientes"</td>
+                    <td>"Vou atrair clientes que valorizam qualidade"</td>
+                </tr>
+                <tr>
+                    <td>"Outros vão pensar que sou arrogante"</td>
+                    <td>"Outros vão me respeitar pela confiança"</td>
+                </tr>
+                <tr>
+                    <td>"E se não conseguir sustentar esses preços?"</td>
+                    <td>"E se conseguir e me tornar a referência?"</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- MÓDULO 7 - MÉTRICAS -->
+        <div class="page-break"></div>
+        <h2>📈 MÓDULO 7: MÉTRICAS E OTIMIZAÇÃO</h2>
+
+        <h3>Dashboard de Conquista</h3>
+
+        <div class="exercise-box">
+            <pre>SEMANA: ________
+
+LIDERANÇA:
+• Preço médio vs mercado: ______% superior
+• Taxa de fechamento: ______%
+• Agenda ocupada (60 dias): ______%
+
+DOMINÂNCIA:
+• Novos clientes premium: ______
+• Indicações recebidas: ______
+• Menções como "referência": ______
+
+EXPANSÃO:
+• Novos territórios: ______
+• Parcerias estabelecidas: ______
+• Seguidores/alcance: ______</pre>
+        </div>
+
+        <h3>Indicadores de Domínio</h3>
+
+        <ul>
+            <li><strong>Taxa de fechamento > 70%:</strong> Posicionamento correto</li>
+            <li><strong>Agenda > 80% ocupada:</strong> Demanda confirmada</li>
+            <li><strong>Preços 200%+ acima mercado:</strong> Liderança estabelecida</li>
+            <li><strong>Concorrentes copiando:</strong> Referência confirmada</li>
+        </ul>
+
+        <!-- CONCLUSÃO -->
+        <div class="page-break"></div>
+        <h2>🎯 CONCLUSÃO: SEU PLANO DE AÇÃO</h2>
+
+        <h3>Próximos 7 Dias (Implementação IMEDIATA)</h3>
+
+        <div class="exercise-box">
+            <h4>DIA 1:</h4>
+            <ul class="checklist">
+                <li>Complete o exercício de análise competitiva</li>
+                <li>Defina sua nova tabela de preços</li>
+                <li>Pratique o script de negociação</li>
+            </ul>
+
+            <h4>DIA 2:</h4>
+            <ul class="checklist">
+                <li>Atualize seus materiais de divulgação</li>
+                <li>Crie template de proposta personalizado</li>
+                <li>Configure seu sistema de métricas</li>
+            </ul>
+
+            <h4>DIAS 4-7:</h4>
+            <ul class="checklist">
+                <li>Execute 5 negociações com nova estratégia</li>
+                <li>Analise taxa de fechamento</li>
+                <li>Prepare lançamento da Fase 2</li>
+            </ul>
+        </div>
+
+        <h3>Compromisso do Conquistador</h3>
+
+        <div class="exercise-box">
+            <pre>EU, _________________________________, 
+me comprometo a implementar o Sistema 
+Conquistador Musical nos próximos 90 dias.
+
+Vou cobrar preços premium, entregar 
+qualidade excepcional e me tornar a 
+referência musical da minha região.
+
+Em 90 dias, serei conhecido como o músico 
+#1 que todo mundo procura primeiro.
+
+Assinatura: ________________________
+Data: ______________________________</pre>
+        </div>
+
+        <!-- CALL TO ACTION -->
+        <div class="page-break"></div>
+        <div class="highlight-box">
+            <h2>🔴 CERTIFICAÇÃO CONQUISTADOR</h2>
+            <h3>Você completou com sucesso o treinamento base para músicos tipo D.</h3>
+            
+            <p><strong>Agora você possui:</strong></p>
+            <ul style="text-align: left;">
+                <li>✅ Framework psicológico de dominância</li>
+                <li>✅ Sistema de precificação premium</li>
+                <li>✅ Scripts de negociação testados</li>
+                <li>✅ Plano estratégico de 90 dias</li>
+                <li>✅ Ferramentas práticas implementáveis</li>
+                <li>✅ Mindset de conquistador estabelecido</li>
+            </ul>
+
+            <h3>CONQUISTE SEU TERRITÓRIO. DOMINE SEU NICHO. SEJA A REFERÊNCIA.</h3>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <strong>Autor:</strong> Edilson Morais | <strong>MAESTRO PALCO</strong><br>
+            <strong>Data:</strong> 08/05/2026<br>
+            <strong>Páginas:</strong> 47 | <strong>Tempo de leitura:</strong> 2h30min<br>
+            <strong>Implementação:</strong> 90 dias para resultados completos
+        </div>
+    </div>
+
+    <!-- SCRIPT PARA IMPRESSÃO -->
+    <script>
+        // Otimizações para PDF
+        function printToPDF() {
+            window.print();
+        }
+
+        // Remove animações para impressão
+        window.addEventListener('beforeprint', function() {
+            document.body.style.background = 'white';
+            document.querySelector('.floating-elements').style.display = 'none';
+        });
+
+        window.addEventListener('afterprint', function() {
+            document.body.style.background = '';
+            document.querySelector('.floating-elements').style.display = 'block';
+        });
+
+        // Scroll suave para elementos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer para animações
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            // Observar elementos animáveis
+            document.querySelectorAll('.summary-box, .exercise-box, .formula-box, .highlight-box, .script-container').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
