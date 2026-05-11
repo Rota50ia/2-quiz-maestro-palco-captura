@@ -1294,6 +1294,7 @@
         
         // Download lead magnet
         function downloadLeadMagnet(type) {
+            console.log('downloadLeadMagnet chamado com tipo:', type);
             // Define lead data
             const leadData = {
                 'D': { name: 'Kit do Conquistador Musical', value: 25.00, neuro: 'adrenaline_testosterone' },
@@ -1339,9 +1340,15 @@
             };
             
             const url = redirectUrls[type];
+            console.log('Redirecionando para URL:', url);
+            console.log('Tipo recebido:', type);
+            console.log('URLs disponíveis:', redirectUrls);
+            
             if (url) {
+                console.log('✅ Redirecionando para:', url);
                 window.location.href = url;
             } else {
+                console.log('❌ Tipo não encontrado, usando fallback');
                 // Fallback para formulário tipo D
                 window.location.href = './forms/alto-d-conquistador.html';
             }
