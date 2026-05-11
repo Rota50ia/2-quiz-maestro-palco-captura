@@ -1022,7 +1022,7 @@
                     <li>Estratégia de posicionamento competitivo</li>
                     <li>Cronograma de conquista em 90 dias</li>
                 </ul>
-                <button class="download-button" onclick="downloadLeadMagnet('conquistador')">BAIXAR KIT DO CONQUISTADOR - GRÁTIS</button>
+                <button class="download-button" onclick="goToEmailCapture('conquistador')">QUERO RECEBER MEU KIT CONQUISTADOR</button>
             </div>
         </div>
         
@@ -1053,7 +1053,7 @@
                     <li>Sistema de construção de comunidade apaixonada</li>
                     <li>Métodos para transformar fãs em divulgadores</li>
                 </ul>
-                <button class="download-button" onclick="downloadLeadMagnet('conectado')">BAIXAR GUIA DO CONECTADO - GRÁTIS</button>
+                <button class="download-button" onclick="goToEmailCapture('conectado')">QUERO RECEBER MEU GUIA CONECTADO</button>
             </div>
         </div>
         
@@ -1084,7 +1084,7 @@
                     <li>Planejamento financeiro musical</li>
                     <li>Estratégias de equilíbrio vida-carreira</li>
                 </ul>
-                <button class="download-button" onclick="downloadLeadMagnet('construtor')">BAIXAR PLANO DO CONSTRUTOR - GRÁTIS</button>
+                <button class="download-button" onclick="goToEmailCapture('construtor')">QUERO RECEBER MEU PLANO CONSTRUTOR</button>
             </div>
         </div>
         
@@ -1115,7 +1115,7 @@
                     <li>Metodologia de precificação baseada em valor</li>
                     <li>Sistema de otimização contínua</li>
                 </ul>
-                <button class="download-button" onclick="downloadLeadMagnet('estrategista')">BAIXAR SISTEMA DO ESTRATEGISTA - GRÁTIS</button>
+                <button class="download-button" onclick="goToEmailCapture('estrategista')">QUERO RECEBER MEU SISTEMA ESTRATEGISTA</button>
             </div>
         </div>
     </div>
@@ -1292,14 +1292,14 @@
             document.getElementById(`result-${dominantType}`).classList.add('active');
         }
         
-        // Download lead magnet - VERSÃO CORRIGIDA COM DELAY
-        function downloadLeadMagnet(type) {
-            console.log('🚀 downloadLeadMagnet chamado com tipo:', type);
+        // Redirect to email capture - NOVA ESTRATÉGIA: EMAIL PRIMEIRO
+        function goToEmailCapture(type) {
+            console.log('🚀 goToEmailCapture chamado com tipo:', type);
             
             // Prevenir ação padrão
-            event.preventDefault();
+            if (event) event.preventDefault();
             
-            // Define lead data
+            // Define lead data para tracking
             const leadData = {
                 'conquistador': { name: 'Kit do Conquistador Musical', value: 25.00, neuro: 'adrenaline_testosterone' },
                 'conectado': { name: 'Guia do Conectado Musical', value: 22.00, neuro: 'dopamine_oxytocin' },
@@ -1312,10 +1312,10 @@
             
             // Tracking (não bloqueia o redirecionamento)
             try {
-                // Facebook Pixel - Lead Magnet Download
+                // Facebook Pixel - InitiateCheckout (início do processo de captura)
                 if (typeof fbq !== 'undefined') {
-                    fbq('track', 'Lead', {
-                        content_name: currentLead.name + ' Download',
+                    fbq('track', 'InitiateCheckout', {
+                        content_name: currentLead.name + ' - Email Capture',
                         personality_type: type,
                         neurotransmitter: currentLead.neuro,
                         value: currentLead.value,
@@ -1326,16 +1326,16 @@
                 
                 // Google Analytics
                 if (typeof gtag !== 'undefined') {
-                    gtag('event', 'lead_magnet_download', {
+                    gtag('event', 'email_capture_redirect', {
                         'personality_type': type,
-                        'magnet_name': `kit_${type}`,
+                        'capture_page': `captura_${type}`,
                         'lead_value': currentLead.value,
                         'neurotransmitter': currentLead.neuro
                     });
                     
-                    // Google Ads - Lead Generation
-                    gtag('event', 'conversion', {
-                        'send_to': 'AW-CONVERSION_ID/LEAD_DOWNLOAD_LABEL',
+                    // Google Ads - Begin Checkout
+                    gtag('event', 'begin_checkout', {
+                        'send_to': 'AW-CONVERSION_ID/CAPTURE_LABEL',
                         'value': currentLead.value,
                         'currency': 'BRL',
                         'personality_type': type
@@ -1346,32 +1346,30 @@
             }
             
             // Redirect com delay para garantir tracking
-            console.log('⏰ Iniciando redirecionamento em 500ms...');
+            console.log('⏰ Iniciando redirecionamento em 300ms...');
             
             setTimeout(function() {
-                // Redirect to specific form based on type (FLUXO CORRETO: CAPTURA PRIMEIRO)
-                const redirectUrls = {
+                // Redirect to email capture pages (NOVA ESTRATÉGIA)
+                const captureUrls = {
                     'conquistador': './forms/alto-d-conquistador.html',
                     'conectado': './forms/alto-i-conectado.html', 
                     'construtor': './forms/alto-s-construtor.html',
                     'estrategista': './forms/alto-c-estrategista.html'
                 };
                 
-                const url = redirectUrls[type];
-                console.log('🔄 Redirecionando para URL:', url);
+                const url = captureUrls[type];
+                console.log('📧 Redirecionando para captura de email:', url);
                 console.log('📝 Tipo recebido:', type);
-                console.log('📋 URLs disponíveis:', redirectUrls);
+                console.log('📋 URLs de captura disponíveis:', captureUrls);
                 
                 if (url) {
-                    console.log('✅ REDIRECIONANDO PARA:', url);
-                    // Forçar redirecionamento
-                    window.location.replace(url);
+                    console.log('✅ REDIRECIONANDO PARA CAPTURA:', url);
+                    window.location.href = url;
                 } else {
                     console.log('❌ Tipo não encontrado, usando fallback');
-                    // Fallback para formulário tipo D
-                    window.location.replace('./forms/alto-d-conquistador.html');
+                    window.location.href = './forms/alto-d-conquistador.html';
                 }
-            }, 500);
+            }, 300);
         }
         
         // Facebook Pixel
