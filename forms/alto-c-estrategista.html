@@ -483,6 +483,11 @@ document.addEventListener('DOMContentLoaded', function() {
         event_label: 'ALTO C',
         personality_type: 'C'
       });
+      
+      // Redirecionamento para eBook após submit (delay para garantir envio)
+      setTimeout(function() {
+        window.location.href = '../ebooks/estrategista.html';
+      }, 1500);
     });
   }
 });

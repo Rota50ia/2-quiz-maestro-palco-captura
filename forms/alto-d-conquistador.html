@@ -483,6 +483,11 @@ document.addEventListener('DOMContentLoaded', function() {
         event_label: 'ALTO D',
         personality_type: 'D'
       });
+      
+      // Redirecionamento para eBook após submit (delay para garantir envio)
+      setTimeout(function() {
+        window.location.href = '../ebooks/conquistador.html';
+      }, 1500);
     });
   }
 });

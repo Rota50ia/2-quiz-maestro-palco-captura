@@ -483,6 +483,11 @@ document.addEventListener('DOMContentLoaded', function() {
         event_label: 'ALTO S',
         personality_type: 'S'
       });
+      
+      // Redirecionamento para eBook após submit (delay para garantir envio)
+      setTimeout(function() {
+        window.location.href = '../ebooks/construtor.html';
+      }, 1500);
     });
   }
 });

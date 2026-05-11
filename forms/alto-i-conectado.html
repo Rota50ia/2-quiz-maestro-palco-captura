@@ -483,6 +483,11 @@ document.addEventListener('DOMContentLoaded', function() {
         event_label: 'ALTO I',
         personality_type: 'I'
       });
+      
+      // Redirecionamento para eBook após submit (delay para garantir envio)
+      setTimeout(function() {
+        window.location.href = '../ebooks/conectado.html';
+      }, 1500);
     });
   }
 });

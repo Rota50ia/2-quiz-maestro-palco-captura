@@ -1330,20 +1330,20 @@
                 'personality_type': type
             });
             
-            // Redirect to specific landing page based on type
+            // Redirect to specific form based on type (FLUXO CORRETO: CAPTURA PRIMEIRO)
             const redirectUrls = {
-                'conquistador': './ebooks/conquistador.html',
-                'conectado': './ebooks/conectado.html', 
-                'construtor': './ebooks/construtor.html',
-                'estrategista': './ebooks/estrategista.html'
+                'conquistador': './forms/alto-d-conquistador.html',
+                'conectado': './forms/alto-i-conectado.html', 
+                'construtor': './forms/alto-s-construtor.html',
+                'estrategista': './forms/alto-c-estrategista.html'
             };
             
             const url = redirectUrls[type];
             if (url) {
                 window.location.href = url;
             } else {
-                // Fallback para página principal
-                window.location.href = './ebooks/conquistador.html';
+                // Fallback para formulário tipo D
+                window.location.href = './forms/alto-d-conquistador.html';
             }
         }
         
