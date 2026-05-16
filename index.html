@@ -1068,7 +1068,14 @@
         
         // Redirect to capture page function
         function goToCapturePage(type) {
-            // Define lead data
+            // Add loading state to button
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'REDIRECIONANDO...';
+            button.disabled = true;
+            button.style.opacity = '0.7';
+            
+            // Define lead data for tracking
             const leadData = {
                 'D': { name: 'Kit do Conquistador Musical', value: 25.00, neuro: 'adrenaline_testosterone' },
                 'I': { name: 'Guia do Conectado Musical', value: 22.00, neuro: 'dopamine_oxytocin' },
@@ -1078,41 +1085,34 @@
             
             const currentLead = leadData[type] || leadData['D'];
             
-            // Add loading state to button
-            const button = event.target;
-            const originalText = button.textContent;
-            button.textContent = 'REDIRECIONANDO...';
-            button.disabled = true;
-            button.style.opacity = '0.7';
+            // Track lead generation (non-blocking)
+            try {
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'Lead', {
+                        content_name: currentLead.name + ' Result',
+                        personality_type: type,
+                        neurotransmitter: currentLead.neuro,
+                        value: currentLead.value,
+                        currency: 'BRL',
+                        event_source_url: window.location.href
+                    });
+                }
+                
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'lead_generation', {
+                        'personality_type': type,
+                        'result_type': type.toLowerCase(),
+                        'lead_value': currentLead.value,
+                        'neurotransmitter': currentLead.neuro
+                    });
+                }
+            } catch (e) {
+                console.warn('Tracking error (non-blocking):', e);
+            }
             
-            // Track lead generation
-            fbq('track', 'Lead', {
-                content_name: currentLead.name + ' Result',
-                personality_type: type,
-                neurotransmitter: currentLead.neuro,
-                value: currentLead.value,
-                currency: 'BRL',
-                event_source_url: window.location.href
-            });
-            
-            gtag('event', 'lead_generation', {
-                'personality_type': type,
-                'result_type': type.toLowerCase(),
-                'lead_value': currentLead.value,
-                'neurotransmitter': currentLead.neuro
-            });
-            
-            gtag('event', 'conversion', {
-                'send_to': `${TRACKING_CONFIG.GOOGLE_ADS_ID}/LEAD_GENERATION_LABEL`,
-                'personality_type': type,
-                'value': currentLead.value,
-                'currency': 'BRL'
-            });
-            
-            // Redirect to capture page after short delay
-            setTimeout(() => {
-                window.location.href = CAPTURE_PAGES[type];
-            }, 1500);
+            // REDIRECT IMEDIATO - prioridade máxima
+            console.log('Redirecionando para:', CAPTURE_PAGES[type]);
+            window.location.href = CAPTURE_PAGES[type];
         }
         
         // Facebook Pixel
