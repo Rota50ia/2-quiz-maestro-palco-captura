@@ -1,13 +1,53 @@
-<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+                                     MAESTRO PALCO - QUIZ DISC 
+                                   Quiz de Personalidade Musical
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+🎯 FLUXO ATUALIZADO:
+   1. Quiz de 4 perguntas DISC
+   2. Resultado personalizado (interno)
+   3. Redirecionamento DIRETO para página de captura
+   4. SEM webhook n8n - redirecionamento JavaScript puro
+
+🔗 PÁGINAS DE CAPTURA:
+   - Tipo D: https://leads-alto-d-maestro-palco.rota50ia.com
+   - Tipo I: https://leads-alto-i-maestro-palco.rota50ia.com  
+   - Tipo S: https://leads-alto-s-maestro-palco.rota50ia.com
+   - Tipo C: https://leads-alto-c-maestro-palco.rota50ia.com
+
+🔧 FUNCIONALIDADES:
+   ✅ Quiz DISC de 4 perguntas com validação obrigatória
+   ✅ 4 resultados personalizados (Conquistador, Conectado, Construtor, Estrategista)
+   ✅ Tracking completo: Facebook Pixel + Google Analytics + Google Ads
+   ✅ Redirecionamento DIRETO sem webhook
+   ✅ Prevenção de abandono + UX otimizada
+   ✅ Design system MAESTRO completo
+   ✅ Responsivo mobile-first
+
+🚀 TRACKING IMPLEMENTADO:
+   - Facebook Pixel com eventos personalizados por tipo DISC
+   - Google Analytics com parâmetros de personalidade
+   - Google Ads com conversões segmentadas
+   - Tempo de resposta por pergunta
+   - Predição neurológica baseada em velocidade
+   - Lead generation com valores personalizados
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-->
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz DISC Musical - Descubra Seu Tipo de Músico Profissional</title>
-    <meta name="description" content="Descubra qual tipo de músico profissional você é e receba a estratégia personalizada para sua personalidade. Mais de 2.847 músicos já descobriram!">
+    <title>Quiz DISC Musical - Maestro Palco</title>
+    
+    <!-- Meta Tags SEO -->
+    <meta name="description" content="Descubra sua personalidade musical em 2 minutos. Quiz DISC personalizado para músicos com estratégia específica para seu perfil.">
+    <meta name="keywords" content="quiz musical, personalidade musical, DISC, músico, carreira musical">
+    <meta name="author" content="Maestro Palco">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Quiz DISC Musical - Qual Seu Tipo de Músico?">
+    <meta property="og:title" content="Quiz DISC Musical - Descubra Sua Personalidade em 2 Minutos">
     <meta property="og:description" content="Em 2 minutos: seu perfil + a estratégia exata para SUA personalidade musical">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://maestropalco.rota50ia.com/quiz">
@@ -21,102 +61,63 @@
         /* ══════════════════════════════════════════════
            MAESTRO DESIGN TOKENS (CSS Custom Properties)
            Filosofia Visual: Podium Stage - BRANDBOOK OFICIAL
-           ══════════════════════════════════════════════ */
+        ══════════════════════════════════════════════ */
         :root {
-            /* ── Colors: Midnight (Primary/Background) ── */
-            --m-midnight-950: #141422;
-            --m-midnight-900: #1C1C2E;
-            --m-midnight-800: #23233A;
-            --m-midnight-700: #2D2D4A;
-            --m-midnight-600: #37376A;
-            --m-midnight-500: #3F3F72;
-
-            /* ── Colors: Gold (Accent) ── */
-            --m-gold-900: #6B5220;
-            --m-gold-800: #886828;
-            --m-gold-700: #A07D34;
-            --m-gold-600: #B89340;
-            --m-gold-500: #C9A84C;
-            --m-gold-400: #DFBE62;
-            --m-gold-300: #F0D080;
-            --m-gold-200: #FFE399;
-            --m-gold-100: #FFEFC2;
-
-            /* ── Colors: Slate (Neutral) ── */
-            --m-slate-200: #E2E8F0;
-            --m-slate-300: #CBD5E1;
-            --m-slate-400: #94A3B8;
-            --m-slate-500: #64748B;
-            --m-slate-600: #475569;
-            --m-slate-700: #334155;
-
-            /* ── Semantic ── */
-            --bg:          var(--m-midnight-900);
-            --bg-card:     var(--m-midnight-800);
-            --bg-elevated: var(--m-midnight-700);
-            --bg-deep:     var(--m-midnight-950);
-            --text:        var(--m-slate-200);
-            --text-muted:  var(--m-slate-400);
-            --text-faint:  var(--m-slate-500);
-            --accent:      var(--m-gold-500);
-            --accent-lt:   var(--m-gold-300);
-            --accent-bg:   rgba(201, 168, 76, 0.08);
-            --border:      rgba(148, 163, 184, 0.12);
-            --border-strong: rgba(148, 163, 184, 0.25);
-            --inverse:     #0A0A14;
-
-            /* ── Feedback ── */
-            --success: #4ADE80;
-            --warning: #FBBF24;
-            --error:   #F87171;
-            --info:    #60A5FA;
-
-            /* ── Typography ── */
-            --font-display: 'Montserrat', 'Arial Black', Helvetica, sans-serif;
-            --font-sans:    'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
-
-            /* ── Spacing ── */
-            --space-1:  4px;
-            --space-2:  8px;
-            --space-3:  12px;
-            --space-4:  16px;
-            --space-5:  20px;
-            --space-6:  24px;
-            --space-8:  32px;
-            --space-10: 40px;
-            --space-12: 48px;
-            --space-16: 64px;
-            --space-20: 80px;
-            --space-24: 96px;
-
-            /* ── Radius ── */
-            --radius-sm:  4px;
-            --radius-md:  8px;
-            --radius-lg:  12px;
-            --radius-xl:  16px;
-            --radius-full: 9999px;
-
-            /* ── Shadows ── */
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-            --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
-            --shadow-glow: 0 0 24px rgba(201, 168, 76, 0.15);
-
-            /* ── Motion ── */
-            --ease: cubic-bezier(0.4, 0, 0.2, 1);
-            --duration-fast: 200ms;
-            --duration-normal: 300ms;
-            --duration-slow: 500ms;
+            /* === CORES PRIMÁRIAS - MAESTRO BRANDBOOK === */
+            --color-primary: #D97706; /* Amber 600 - Tom principal */
+            --color-secondary: #1F2937; /* Gray 800 - Contraste */
+            --color-accent: #F59E0B; /* Amber 500 - Destaque */
             
-            /* ── DISC Colors (Neurological) ── */
-            --color-d: #DC2626; /* Conquistador - Vermelho - Adrenalina */
-            --color-i: #EA580C; /* Conectado - Laranja - Dopamina+Oxitocina */
-            --color-s: #FACC15; /* Construtor - Amarelo - Serotonina */
-            --color-c: #3B82F6; /* Estrategista - Azul - Dopamina Competência */
+            /* === PALETA DE PERSONALIDADES DISC (NEUROLÓGICA) === */
+            --color-d: #DC2626; /* Red 600 - Dominante/Conquistador (Adrenalina) */
+            --color-i: #EA580C; /* Orange 600 - Influente/Conectado (Dopamina) */
+            --color-s: #FACC15; /* Yellow 400 - Estável/Construtor (Serotonina) */
+            --color-c: #3B82F6; /* Blue 500 - Consciencioso/Estrategista (Competência) */
+            
+            /* === GRAYSCALE === */
+            --color-dark: #0F172A; /* Slate 900 */
+            --color-medium: #475569; /* Slate 600 */
+            --color-light: #F1F5F9; /* Slate 100 */
+            --color-white: #FFFFFF;
+            
+            /* === GRADIENTES === */
+            --gradient-gold: linear-gradient(135deg, #F59E0B, #D97706);
+            --gradient-dark: linear-gradient(135deg, #1F2937, #111827);
+            
+            /* === TIPOGRAFIA === */
+            --font-family-primary: 'Montserrat', sans-serif;
+            --font-family-mono: 'JetBrains Mono', monospace;
+            
+            --font-weight-light: 300;
+            --font-weight-regular: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --font-weight-black: 900;
+            
+            /* === ESPAÇAMENTOS === */
+            --spacing-xs: 0.25rem; /* 4px */
+            --spacing-sm: 0.5rem;  /* 8px */
+            --spacing-md: 1rem;    /* 16px */
+            --spacing-lg: 1.5rem;  /* 24px */
+            --spacing-xl: 2rem;    /* 32px */
+            --spacing-2xl: 3rem;   /* 48px */
+            --spacing-3xl: 4rem;   /* 64px */
+            
+            /* === BORDAS === */
+            --border-radius-sm: 8px;
+            --border-radius-md: 16px;
+            --border-radius-lg: 24px;
+            --border-radius-xl: 32px;
+            
+            /* === SOMBRAS === */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --shadow-glow: 0 0 20px rgba(245, 158, 11, 0.3);
         }
         
-        /* === RESET === */
+        /* === BASE STYLES === */
         * {
             margin: 0;
             padding: 0;
@@ -124,407 +125,169 @@
         }
         
         body {
-            font-family: var(--font-sans);
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            position: relative;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 80%, var(--accent-bg) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(201, 168, 76, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 50%, var(--accent-bg) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        /* === CONTAINER === */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: var(--space-5);
+            font-family: var(--font-family-primary);
+            background: var(--gradient-dark);
+            color: var(--color-white);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
         }
         
-        /* === LANDING PAGE === */
-        .landing {
-            text-align: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: var(--space-16);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-glow);
-            backdrop-filter: blur(15px);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .landing::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-lt));
-        }
-        
-        .landing::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, var(--accent-bg) 0%, rgba(201, 168, 76, 0.02) 30%, transparent 70%);
-            pointer-events: none;
-            animation: rotate 20s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .logo {
-            color: var(--accent);
-            font-size: clamp(32px, 5vw, 48px);
-            font-family: var(--font-display);
-            font-weight: 900;
-            margin-bottom: var(--space-8);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-lt));
-            border-radius: var(--radius-sm);
-        }
-        
-        .headline {
-            font-size: clamp(36px, 6vw, 56px);
-            font-family: var(--font-display);
-            font-weight: 900;
-            margin-bottom: var(--space-6);
-            background: linear-gradient(135deg, var(--accent), var(--accent-lt));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .subheadline {
-            font-size: clamp(18px, 2.5vw, 24px);
-            color: var(--text-muted);
-            margin-bottom: var(--space-8);
-            line-height: 1.5;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .copy {
-            text-align: left;
-            margin-bottom: var(--space-8);
-            font-size: 18px;
-            line-height: 1.7;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .copy p {
-            margin-bottom: var(--space-5);
-        }
-        
-        .copy strong {
-            color: var(--accent);
-            font-weight: 700;
-            position: relative;
-        }
-        
-        .copy strong::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), transparent);
-            opacity: 0.3;
-        }
-        
-        .types-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-4);
-            margin: var(--space-8) 0;
-            text-align: left;
-        }
-        
-        .type-item {
-            padding: var(--space-4);
-            background: var(--bg-elevated);
-            border-radius: var(--radius-md);
-            border-left: 4px solid var(--accent);
-            font-size: 14px;
-        }
-        
-        .type-item.tipo-d { border-left-color: var(--color-d); }
-        .type-item.tipo-i { border-left-color: var(--color-i); }
-        .type-item.tipo-s { border-left-color: var(--color-s); }
-        .type-item.tipo-c { border-left-color: var(--color-c); }
-        
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent), var(--accent-lt));
-            color: var(--inverse);
-            padding: var(--space-5) var(--space-12);
-            border: none;
-            border-radius: var(--radius-xl);
-            font-size: 20px;
-            font-family: var(--font-display);
-            font-weight: 700;
-            cursor: pointer;
-            transition: all var(--duration-normal) var(--ease);
-            text-decoration: none;
-            box-shadow: var(--shadow-glow);
-            margin: var(--space-6) 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .container {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: var(--shadow-lg), 0 20px 40px rgba(201,168,76,0.4);
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
-        .cta-button:active {
-            transform: translateY(-1px) scale(1.01);
-        }
-        
-        .benefits {
-            display: flex;
-            justify-content: space-around;
-            margin-top: var(--space-6);
-            font-size: 16px;
-            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
             position: relative;
-            z-index: 1;
-        }
-        
-        .benefits span {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            font-weight: 600;
-            padding: var(--space-2) var(--space-3);
-            background: var(--bg-elevated);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-        }
-        
-        .benefits span::before {
-            content: "✅";
-            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
         }
         
         /* === QUIZ SCREENS === */
         .quiz-screen {
             display: none;
             text-align: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: var(--space-16);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-glow);
-            backdrop-filter: blur(15px);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .quiz-screen::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-lt));
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            background: rgba(31, 41, 55, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-xl);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            box-shadow: var(--shadow-lg);
         }
         
         .quiz-screen.active {
             display: block;
+            animation: fadeInUp 0.6s ease both;
         }
         
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(201, 168, 76, 0.2);
-            border-radius: 4px;
-            margin-bottom: 45px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(201, 168, 76, 0.1) 50%, transparent 100%);
-            animation: shimmer 2s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .progress-fill {
-            height: 100%;
+        /* === INTRO SCREEN === */
+        .intro-title {
+            font-size: 3rem;
+            font-weight: var(--font-weight-black);
             background: var(--gradient-gold);
-            width: 0%;
-            transition: width 0.8s ease;
-            border-radius: 3px;
-            position: relative;
-            overflow: hidden;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
         
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
-            animation: progressShine 1.5s ease infinite;
+        .intro-subtitle {
+            font-size: 1.5rem;
+            color: var(--color-light);
+            margin-bottom: var(--spacing-2xl);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.4;
         }
         
-        @keyframes progressShine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        .cta-button {
+            background: var(--gradient-gold);
+            color: var(--color-white);
+            font-weight: var(--font-weight-bold);
+            font-size: 1.2rem;
+            padding: var(--spacing-lg) var(--spacing-2xl);
+            border: none;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--spacing-xl);
+            width: 100%;
+            max-width: 400px;
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+        
+        .benefits {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: var(--color-light);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .benefits span {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--border-radius-sm);
+        }
+        
+        /* === QUESTION STYLES === */
+        .question-header {
+            margin-bottom: var(--spacing-2xl);
         }
         
         .question-number {
-            color: var(--color-primary);
+            color: var(--color-accent);
+            font-weight: var(--font-weight-bold);
             font-size: 1rem;
-            font-weight: var(--font-weight-semibold);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
         }
         
         .question-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: var(--font-weight-bold);
-            margin-bottom: 45px;
+            margin-bottom: var(--spacing-2xl);
             line-height: 1.3;
-            color: var(--color-light);
-            position: relative;
+            color: var(--color-white);
         }
         
         .options {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
+            display: grid;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
         }
         
         .option {
-            background: rgba(255,255,255,0.03);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: var(--border-radius);
-            padding: 25px;
+            background: rgba(71, 85, 105, 0.3);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-xl);
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             text-align: left;
-            font-size: 1.1rem;
-            line-height: 1.5;
             position: relative;
             overflow: hidden;
         }
         
-        .option::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-        
         .option:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: var(--color-primary);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-gold);
-        }
-        
-        .option:hover::before {
-            left: 100%;
+            background: rgba(71, 85, 105, 0.5);
+            border-color: rgba(245, 158, 11, 0.5);
+            transform: translateY(-2px);
         }
         
         .option.selected {
-            border-color: var(--color-primary);
-            background: rgba(201,168,76,0.15);
-            box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
-            transform: translateY(-3px) scale(1.01);
-        }
-        
-        .option.selected::before {
-            left: 100%;
+            background: rgba(245, 158, 11, 0.2);
+            border-color: var(--color-accent);
+            box-shadow: var(--shadow-glow);
         }
         
         .option-label {
             font-weight: var(--font-weight-bold);
-            color: var(--color-primary);
-            margin-bottom: 8px;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .option-text {
+            color: var(--color-light);
+            line-height: 1.6;
             font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -565,12 +328,11 @@
         }
         
         .lead-magnet {
-            background: rgba(255,255,255,0.03);
-            border: 2px solid var(--color-primary);
-            padding: 35px;
-            border-radius: var(--border-radius);
-            margin-bottom: 35px;
-            text-align: left;
+            background: rgba(31, 41, 55, 0.6);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-2xl) 0;
             position: relative;
             overflow: hidden;
         }
@@ -585,114 +347,98 @@
             background: var(--gradient-gold);
         }
         
-        .lead-magnet::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(201, 168, 76, 0.04) 0%, rgba(59, 130, 246, 0.02) 30%, transparent 70%);
-            pointer-events: none;
-        }
-        
         .lead-magnet h3 {
-            color: var(--color-primary);
-            font-size: 1.5rem;
+            color: var(--color-accent);
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
             font-weight: var(--font-weight-bold);
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
         }
         
         .lead-magnet ul {
             list-style: none;
-            margin-bottom: 20px;
+            margin: var(--spacing-lg) 0;
         }
         
         .lead-magnet li {
-            padding: 5px 0;
-            padding-left: 20px;
+            padding: var(--spacing-sm) 0;
             position: relative;
+            padding-left: var(--spacing-lg);
+            color: var(--color-light);
+            line-height: 1.6;
         }
         
         .lead-magnet li::before {
-            content: "✓";
+            content: '✓';
             position: absolute;
             left: 0;
-            color: var(--color-primary);
+            color: var(--color-accent);
             font-weight: bold;
         }
         
         .download-button {
             background: var(--gradient-gold);
-            color: var(--color-dark);
-            padding: 18px 35px;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 1.2rem;
+            color: var(--color-white);
             font-weight: var(--font-weight-bold);
+            font-size: 1.1rem;
+            padding: var(--spacing-lg) var(--spacing-xl);
+            border: none;
+            border-radius: var(--border-radius-md);
             cursor: pointer;
-            width: 100%;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .download-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+            letter-spacing: 0.5px;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s ease;
+            box-shadow: var(--shadow-glow);
         }
         
         .download-button:hover {
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: var(--shadow-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
         }
         
-        .download-button:hover::before {
-            left: 100%;
+        .continue-button {
+            background: var(--gradient-gold);
+            color: var(--color-white);
+            font-weight: var(--font-weight-bold);
+            font-size: 1.1rem;
+            padding: var(--spacing-lg) var(--spacing-2xl);
+            border: none;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%;
+            max-width: 300px;
         }
         
-        .download-button:active {
-            transform: translateY(-1px) scale(1.005);
+        .continue-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         
-        /* === MOBILE === */
+        .continue-button:not(:disabled):hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
             .container {
-                padding: 10px;
+                padding: var(--spacing-md);
             }
             
-            .landing, .quiz-screen {
-                padding: 30px 20px;
-                margin: 0;
+            .quiz-screen {
+                padding: var(--spacing-xl) var(--spacing-md);
             }
             
-            .logo {
-                font-size: 1.8rem;
-            }
-            
-            .headline {
+            .intro-title {
                 font-size: 2.2rem;
-                line-height: 1.1;
             }
             
-            .subheadline {
-                font-size: 1.1rem;
-            }
-            
-            .types-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
+            .intro-subtitle {
+                font-size: 1.2rem;
             }
             
             .question-title {
@@ -714,59 +460,26 @@
             
             .benefits {
                 flex-direction: column;
-                gap: 10px;
                 align-items: center;
-            }
-            
-            .cta-button, .download-button {
-                padding: 18px 25px;
-                font-size: 1.1rem;
+                gap: var(--spacing-sm);
             }
         }
         
-        /* === ANIMATIONS MAESTRO PALCO === */
+        /* === ANIMATIONS === */
         @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px); 
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-        
-        @keyframes fadeInScale {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px) scale(0.95); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         
         @keyframes goldGlow {
-            0%, 100% { 
-                box-shadow: var(--shadow-gold); 
-            }
-            50% { 
-                box-shadow: 0 15px 40px rgba(201, 168, 76, 0.25); 
-            }
-        }
-        
-        .quiz-screen.active {
-            animation: fadeInScale 0.6s ease;
-        }
-        
-        .landing.active {
-            animation: fadeInUp 0.8s ease;
-        }
-        
-        .option {
-            animation: fadeInUp 0.4s ease;
-            animation-fill-mode: both;
+            0%, 100% { box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 6px 25px rgba(245, 158, 11, 0.6); }
         }
         
         .option:nth-child(1) { animation-delay: 0.1s; }
@@ -826,48 +539,90 @@
         .result .lead-magnet::before {
             background: var(--accent-gradient, var(--gradient-gold));
         }
+        
+        /* === CONTINUE BUTTON === */
+        .continue-button {
+            background: var(--gradient-gold);
+            color: var(--color-white);
+            font-weight: var(--font-weight-bold);
+            font-size: 1.1rem;
+            padding: var(--spacing-lg) var(--spacing-2xl);
+            border: none;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .continue-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: rgba(107, 114, 128, 0.5);
+        }
+        
+        .continue-button:not(:disabled):hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        /* === TOOLTIP === */
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+        
+        .tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-dark);
+            color: var(--color-white);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius-sm);
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 1000;
+            border: 1px solid var(--color-accent);
+        }
+        
+        /* === PROGRESS BAR === */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(71, 85, 105, 0.3);
+            border-radius: 2px;
+            margin: var(--spacing-lg) 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-gold);
+            transition: width 0.5s ease;
+            border-radius: 2px;
+        }
+        
     </style>
 </head>
 <body>
-    <!-- === LANDING PAGE === -->
     <div class="container">
-        <div class="landing active" id="landing">
-            <div class="logo">MAESTRO PALCO</div>
+        <!-- === INTRO SCREEN === -->
+        <div class="quiz-screen active" id="intro">
+            <h1 class="intro-title">Qual é o seu<br>tipo musical?</h1>
             
-            <h1 class="headline">Descubra Qual Tipo de Músico Profissional Você É</h1>
+            <p class="intro-subtitle">
+                Em apenas <strong>2 minutos</strong>, descubra seu perfil DISC<br>
+                e receba a estratégia exata para SUA personalidade
+            </p>
             
-            <p class="subheadline">Em 2 minutos: seu perfil + a estratégia exata para SUA personalidade.</p>
-            
-            <div class="copy">
-                <p>Mais de <strong>2.847 músicos</strong> descobriram seu tipo e transformaram suas carreiras usando a estratégia certa para sua personalidade. <strong>Qual é a sua?</strong></p>
-                
-                <p>Você já notou que alguns músicos "explodem" rapidamente enquanto outros, igualmente talentosos, ficam anos na invisibilidade?</p>
-                
-                <p>A diferença não é talento. É <strong>estratégia personalizada.</strong></p>
-                
-                <p>Existem 4 tipos de personalidade musical, e cada um tem um caminho específico para o sucesso:</p>
-                
-                <div class="types-grid">
-                    <div class="type-item tipo-d">
-                        <strong>🔴 CONQUISTADOR<span style="background: #DC2626; color: white; padding: 2px 4px; border-radius: 4px; font-weight: 900;">D</span>ORES</strong><br>
-                        Dominam através da velocidade e competição
-                    </div>
-                    <div class="type-item tipo-i">
-                        <strong>🟠 CONECTA<span style="background: #EA580C; color: white; padding: 2px 4px; border-radius: 4px; font-weight: 900;">I</span>DOS</strong><br>
-                        Inspiram através da autenticidade e relacionamentos
-                    </div>
-                    <div class="type-item tipo-s">
-                        <strong>🟡 CON<span style="background: #FACC15; color: #1A1C1E; padding: 2px 4px; border-radius: 4px; font-weight: 900;">S</span>TRUTORES</strong><br>
-                        Prosperam através da estabilidade e consistência
-                    </div>
-                    <div class="type-item tipo-c">
-                        <strong>🔵 ESTRATEGISTAS<span style="background: #3B82F6; color: white; padding: 2px 4px; border-radius: 4px; font-weight: 900; margin-left: 2px;">C</span></strong><br>
-                        Vencem através de metodologia e competência
-                    </div>
-                </div>
-                
-                <p>Qual é o <strong>SEU</strong> tipo?</p>
-                <p>E mais importante: <strong>qual estratégia vai fazer VOCÊ decolar?</strong></p>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 0%"></div>
             </div>
             
             <button class="cta-button" onclick="startQuiz()">DESCOBRIR MEU TIPO EM 2 MINUTOS</button>
@@ -880,120 +635,129 @@
         </div>
         
         <!-- === QUIZ SCREENS === -->
+        
         <!-- Question 1 -->
-        <div class="quiz-screen" id="question1">
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 25%"></div>
+        <div class="quiz-screen" id="question-1">
+            <div class="question-header">
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 25%"></div>
+                </div>
             </div>
-            
-            <div class="question-number">Pergunta 1 de 4</div>
-            <h2 class="question-title">Quando você recebe uma proposta para tocar em um evento importante, sua primeira reação é:</h2>
+            <div class="question-number">Pergunta 1 de 4 <span class="tooltip" data-tooltip="Seja honesto!">🎯</span></div>
+            <h2 class="question-title">Quando você está em uma apresentação musical, você:</h2>
             
             <div class="options">
                 <div class="option" onclick="selectOption(1, 'D')" data-value="D">
-                    <div class="option-label">🔴 Direto ao ponto</div>
-                    "Quanto paga e quando preciso dar resposta?"
+                    <div class="option-label">🔴 Comando total</div>
+                    <div class="option-text">"Tomo o controle e lidero a performance com confiança e autoridade"</div>
                 </div>
                 <div class="option" onclick="selectOption(1, 'I')" data-value="I">
-                    <div class="option-label">🟠 Focado na experiência</div>
-                    "Que tipo de evento? Quem mais vai participar? Como vai ser o ambiente?"
+                    <div class="option-label">🟠 Conexão com o público</div>
+                    <div class="option-text">"Foco em criar uma conexão emocional e interagir com a plateia"</div>
                 </div>
                 <div class="option" onclick="selectOption(1, 'S')" data-value="S">
-                    <div class="option-label">🟡 Preciso de tempo</div>
-                    "Posso pensar até amanhã? Preciso organizar minha agenda."
+                    <div class="option-label">🟡 Apoio ao grupo</div>
+                    <div class="option-text">"Prefiro apoiar o grupo e manter a harmonia durante toda a apresentação"</div>
                 </div>
                 <div class="option" onclick="selectOption(1, 'C')" data-value="C">
-                    <div class="option-label">🔵 Quero todos os detalhes</div>
-                    "Quero todos os detalhes: horário, equipamentos, repertório, público esperado."
+                    <div class="option-label">🔵 Precisão técnica</div>
+                    <div class="option-text">"Concentro na execução perfeita e nos detalhes técnicos da performance"</div>
                 </div>
             </div>
+            <button class="continue-button" onclick="nextQuestion(1)" disabled>PRÓXIMA PERGUNTA</button>
         </div>
         
         <!-- Question 2 -->
-        <div class="quiz-screen" id="question2">
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 50%"></div>
+        <div class="quiz-screen" id="question-2">
+            <div class="question-header">
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 50%"></div>
+                </div>
             </div>
-            
-            <div class="question-number">Pergunta 2 de 4</div>
-            <h2 class="question-title">Quando você pensa na sua carreira musical ideal, o que mais te motiva?</h2>
+            <div class="question-number">Pergunta 2 de 4 <span class="tooltip" data-tooltip="Pense no dia a dia">💭</span></div>
+            <h2 class="question-title">Na sua rotina de estudos musicais, você prefere:</h2>
             
             <div class="options">
                 <div class="option" onclick="selectOption(2, 'D')" data-value="D">
-                    <div class="option-label">🔴 Ser o melhor</div>
-                    "Ser reconhecido como o MELHOR do meu estilo, que todo mundo quer contratar"
+                    <div class="option-label">🔴 Metas desafiadoras</div>
+                    <div class="option-text">"Estabelecer metas audaciosas e trabalhar intensamente para conquistá-las"</div>
                 </div>
                 <div class="option" onclick="selectOption(2, 'I')" data-value="I">
-                    <div class="option-label">🟠 Tocar vidas</div>
-                    "Tocar vidas através da minha música e ter uma audiência que me ama"
+                    <div class="option-label">🟠 Aprendizado social</div>
+                    <div class="option-text">"Estudar com outros músicos, trocar experiências e aprender em grupo"</div>
                 </div>
                 <div class="option" onclick="selectOption(2, 'S')" data-value="S">
-                    <div class="option-label">🟡 Ter sustentabilidade</div>
-                    "Ter uma carreira sustentável que me dá liberdade e qualidade de vida"
+                    <div class="option-label">🟡 Rotina estruturada</div>
+                    <div class="option-text">"Manter uma rotina consistente e equilibrada, sem pressa ou pressão"</div>
                 </div>
                 <div class="option" onclick="selectOption(2, 'C')" data-value="C">
-                    <div class="option-label">🔵 Domínio técnico</div>
-                    "Dominar meu instrumento tecnicamente e ter um método perfeito de trabalho"
+                    <div class="option-label">🔵 Método sistemático</div>
+                    <div class="option-text">"Seguir um método detalhado e acompanhar meu progresso com métricas"</div>
                 </div>
             </div>
+            <button class="continue-button" onclick="nextQuestion(2)" disabled>PRÓXIMA PERGUNTA</button>
         </div>
         
         <!-- Question 3 -->
-        <div class="quiz-screen" id="question3">
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 75%"></div>
+        <div class="quiz-screen" id="question-3">
+            <div class="question-header">
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 75%"></div>
+                </div>
             </div>
-            
-            <div class="question-number">Pergunta 3 de 4</div>
-            <h2 class="question-title">Quando você vai precificar um trabalho musical:</h2>
+            <div class="question-number">Pergunta 3 de 4 <span class="tooltip" data-tooltip="Quase lá!">⚡</span></div>
+            <h2 class="question-title">Quando enfrenta um desafio musical difícil:</h2>
             
             <div class="options">
                 <div class="option" onclick="selectOption(3, 'D')" data-value="D">
-                    <div class="option-label">🔴 Sei o que valho</div>
-                    "Cobro o que SEI que valho e negocio até conseguir o preço certo"
+                    <div class="option-label">🔴 Ataco direto</div>
+                    <div class="option-text">"Enfrento de forma direta e rápida, tomando decisões firmes"</div>
                 </div>
                 <div class="option" onclick="selectOption(3, 'I')" data-value="I">
-                    <div class="option-label">🟠 Adapto ao contexto</div>
-                    "Pesquiso com outros músicos e adapto conforme o cliente e o relacionamento"
+                    <div class="option-label">🟠 Busco inspiração</div>
+                    <div class="option-text">"Converso com outros músicos e busco inspiração em diferentes fontes"</div>
                 </div>
                 <div class="option" onclick="selectOption(3, 'S')" data-value="S">
-                    <div class="option-label">🟡 Tenho meu padrão</div>
-                    "Tenho uma tabela padrão que funciona bem e raramente mudo"
+                    <div class="option-label">🟡 Persisto com calma</div>
+                    <div class="option-text">"Mantenho a calma e trabalho de forma consistente até resolver"</div>
                 </div>
                 <div class="option" onclick="selectOption(3, 'C')" data-value="C">
-                    <div class="option-label">🔵 Baseado em dados</div>
-                    "Calculo todos os custos envolvidos e adiciono margem baseada em dados"
+                    <div class="option-label">🔵 Analiso profundamente</div>
+                    <div class="option-text">"Analiso cada detalhe, pesquiso soluções e planejo cuidadosamente"</div>
                 </div>
             </div>
+            <button class="continue-button" onclick="nextQuestion(3)" disabled>PRÓXIMA PERGUNTA</button>
         </div>
         
         <!-- Question 4 -->
-        <div class="quiz-screen" id="question4">
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 100%"></div>
+        <div class="quiz-screen" id="question-4">
+            <div class="question-header">
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 100%"></div>
+                </div>
             </div>
-            
-            <div class="question-number">Pergunta 4 de 4</div>
+            <div class="question-number">Pergunta 4 de 4 <span class="tooltip" data-tooltip="Última pergunta!">🏁</span></div>
             <h2 class="question-title">Para crescer profissionalmente na música, você prefere:</h2>
             
             <div class="options">
                 <div class="option" onclick="selectOption(4, 'D')" data-value="D">
                     <div class="option-label">🔴 Resultados rápidos</div>
-                    "Focar no que traz resultado RÁPIDO, sem muita enrolação ou teoria"
+                    <div class="option-text">"Focar no que traz resultado RÁPIDO, sem muita enrolação ou teoria"</div>
                 </div>
                 <div class="option" onclick="selectOption(4, 'I')" data-value="I">
                     <div class="option-label">🟠 Aprendizado colaborativo</div>
-                    "Compartilhar a jornada com outros músicos e aprender através de experiências"
+                    <div class="option-text">"Compartilhar a jornada com outros músicos e aprender através de experiências"</div>
                 </div>
                 <div class="option" onclick="selectOption(4, 'S')" data-value="S">
-                    <div class="option-label">🟡 Crescimento gradual</div>
-                    "Crescimento gradual e sustentável, sem pressa nem pressão excessiva"
+                    <div class="option-label">🟡 Crescimento sustentável</div>
+                    <div class="option-text">"Crescer de forma sustentável, equilibrando carreira e vida pessoal"</div>
                 </div>
                 <div class="option" onclick="selectOption(4, 'C')" data-value="C">
                     <div class="option-label">🔵 Sistema estruturado</div>
-                    "Ter um sistema estruturado com métricas para acompanhar meu progresso"
+                    <div class="option-text">"Ter um sistema estruturado com métricas para acompanhar meu progresso"</div>
                 </div>
             </div>
+            <button class="continue-button" onclick="nextQuestion(4)" disabled style="opacity: 0.5;">VER MEU RESULTADO</button>
         </div>
         
         <!-- === RESULT SCREENS === -->
@@ -1015,14 +779,14 @@
             </div>
             
             <div class="lead-magnet">
-                <h3>"Kit do Conquistador: Como Dominar Seu Nicho Musical em 90 Dias"</h3>
+                <h3>🎯 Kit do Conquistador Musical</h3>
                 <ul>
                     <li>Planilha de precificação dominante</li>
                     <li>Script de negociação que fecha 80% das propostas</li>
                     <li>Estratégia de posicionamento competitivo</li>
                     <li>Cronograma de conquista em 90 dias</li>
                 </ul>
-                <button class="download-button" onclick="goToEmailCapture('conquistador')">QUERO RECEBER MEU KIT CONQUISTADOR</button>
+                <button class="download-button" onclick="goToCapturePage('D')">RECEBER MEU RESULTADO PERSONALIZADO</button>
             </div>
         </div>
         
@@ -1038,22 +802,20 @@
                 
                 <p><strong>Seu superpoder?</strong> Autenticidade + Carisma + Impacto emocional.</p>
                 
-                <p>Mas aqui está sua frustração: você tem talento INCRÍVEL, mas poucas pessoas conhecem seu trabalho.</p>
+                <p>Mas há um problema: a maioria das estratégias musicais foca só na técnica. E Conectados como você precisam de algo mais profundo.</p>
                 
-                <p>O problema não é seu talento. É que ninguém te ensinou como ser ENCONTRADO pelas pessoas certas.</p>
-                
-                <p><strong>Você precisa da estratégia de CONEXÃO para seu perfil.</strong></p>
+                <p><strong>Você precisa de uma abordagem que honre sua natureza inspiradora.</strong></p>
             </div>
             
             <div class="lead-magnet">
-                <h3>"Guia do Conectado: Como Ser Descoberto e Amado por Sua Audiência"</h3>
+                <h3>🧡 Guia do Conectado Musical</h3>
                 <ul>
                     <li>Estratégia de storytelling emocional</li>
                     <li>Template de conteúdo que gera engajamento</li>
                     <li>Sistema de construção de comunidade apaixonada</li>
                     <li>Métodos para transformar fãs em divulgadores</li>
                 </ul>
-                <button class="download-button" onclick="goToEmailCapture('conectado')">QUERO RECEBER MEU GUIA CONECTADO</button>
+                <button class="download-button" onclick="goToCapturePage('I')">RECEBER MEU RESULTADO PERSONALIZADO</button>
             </div>
         </div>
         
@@ -1069,22 +831,20 @@
                 
                 <p><strong>Seu superpoder?</strong> Consistência + Equilíbrio + Sustentabilidade.</p>
                 
-                <p>Mas aqui está sua luta: o mundo musical é obcecado por "crescimento rápido" e você se sente pressionado a agir contra sua natureza.</p>
-                
-                <p>A verdade? Os músicos mais RICOS e FELIZES que conheço são todos Construtores.</p>
+                <p>Mas o mundo musical está obcecado com "crescimento rápido" e "viral". E isso faz Construtores se sentirem deslocados.</p>
                 
                 <p><strong>Você precisa da estratégia SUSTENTÁVEL para seu perfil.</strong></p>
             </div>
             
             <div class="lead-magnet">
-                <h3>"Plano do Construtor: Carreira Musical Sustentável e Lucrativa"</h3>
+                <h3>💛 Plano do Construtor Musical</h3>
                 <ul>
                     <li>Cronograma de crescimento gradual seguro</li>
                     <li>Sistema de renda recorrente para músicos</li>
                     <li>Planejamento financeiro musical</li>
                     <li>Estratégias de equilíbrio vida-carreira</li>
                 </ul>
-                <button class="download-button" onclick="goToEmailCapture('construtor')">QUERO RECEBER MEU PLANO CONSTRUTOR</button>
+                <button class="download-button" onclick="goToCapturePage('S')">RECEBER MEU RESULTADO PERSONALIZADO</button>
             </div>
         </div>
         
@@ -1100,126 +860,149 @@
                 
                 <p><strong>Seu superpoder?</strong> Precisão + Metodologia + Excelência técnica.</p>
                 
-                <p>Mas aqui está sua frustração: 99% do conteúdo musical é superficial, sem fundamento científico, testado por ninguém.</p>
+                <p>Mas a indústria musical está cheia de conselhos vagos e "motivacionais". E isso frustra Estrategistas como você.</p>
                 
-                <p>Você merece estratégias à altura da sua competência.</p>
-                
-                <p><strong>Você precisa do SISTEMA CIENTÍFICO para seu perfil.</strong></p>
+                <p><strong>Você precisa de um SISTEMA baseado em dados e metodologia.</strong></p>
             </div>
             
             <div class="lead-magnet">
-                <h3>"Sistema do Estrategista: Metodologia Comprovada Para Carreira Musical"</h3>
+                <h3>💙 Sistema do Estrategista Musical</h3>
                 <ul>
                     <li>Framework científico de crescimento musical</li>
                     <li>Planilha de métricas e KPIs musicais</li>
                     <li>Metodologia de precificação baseada em valor</li>
                     <li>Sistema de otimização contínua</li>
                 </ul>
-                <button class="download-button" onclick="goToEmailCapture('estrategista')">QUERO RECEBER MEU SISTEMA ESTRATEGISTA</button>
+                <button class="download-button" onclick="goToCapturePage('C')">RECEBER MEU RESULTADO PERSONALIZADO</button>
             </div>
         </div>
     </div>
     
     <script>
-        // === QUIZ LOGIC === 
-        let currentQuestion = 0;
-        let answers = [];
-        let startTime = Date.now();
+        // ═══════════════════════════════════════════════════════
+        // 🔧 CONFIGURAÇÃO DE TRACKING - ALTERE AQUI OS SEUS IDs
+        // ═══════════════════════════════════════════════════════
+        const TRACKING_CONFIG = {
+            // 📘 Facebook Pixel ID - Encontre em: Facebook Ads Manager > Eventos > Pixels
+            FACEBOOK_PIXEL_ID: 'SEU_FACEBOOK_PIXEL_ID_AQUI',
+            
+            // 📊 Google Analytics ID - Encontre em: Analytics > Admin > Propriedades
+            GOOGLE_ANALYTICS_ID: 'G-SEUCODIGO123',
+            
+            // 📈 Google Ads ID - Encontre em: Google Ads > Ferramentas > Configuração > Conversões
+            GOOGLE_ADS_ID: 'AW-123456789'
+        };
+
+        // ═══════════════════════════════════════════════════════
+        // 🔗 URLs DAS PÁGINAS DE CAPTURA POR TIPO DISC
+        // ═══════════════════════════════════════════════════════
+        const CAPTURE_PAGES = {
+            'D': 'https://leads-alto-d-maestro-palco.rota50ia.com',
+            'I': 'https://leads-alto-i-maestro-palco.rota50ia.com', 
+            'S': 'https://leads-alto-s-maestro-palco.rota50ia.com',
+            'C': 'https://leads-alto-c-maestro-palco.rota50ia.com'
+        };
         
-        // Track quiz start
+        // Global variables
+        let answers = [];
+        let currentQuestion = 0;
+        let startTime = Date.now();
+        let quizCompleted = false;
+        
+        // Prevent accidental exit before completion
+        window.addEventListener('beforeunload', function (e) {
+            if (!quizCompleted && currentQuestion > 0) {
+                e.preventDefault();
+                e.returnValue = '';
+                return '';
+            }
+        });
+        
+        // Start quiz function
         function startQuiz() {
-            // Facebook Pixel
-            fbq('track', 'Lead', {
-                content_name: 'Quiz DISC Musical Started',
-                content_category: 'Musical Personality Assessment',
+            document.getElementById('intro').classList.remove('active');
+            document.getElementById('question-1').classList.add('active');
+            currentQuestion = 1;
+            startTime = Date.now();
+            
+            // Track quiz start
+            fbq('track', 'InitiateCheckout', {
+                content_category: 'DISC Quiz',
+                content_name: 'Musical Personality Quiz Start',
                 value: 0,
                 currency: 'BRL'
             });
             
-            // Google Analytics
-            gtag('event', 'quiz_started', {
-                'source': 'landing_page'
+            gtag('event', 'quiz_start', {
+                'quiz_name': 'DISC Musical Personality',
+                'start_time': new Date().toISOString()
             });
             
-            // Google Ads
-            gtag('event', 'conversion', {
-                'send_to': 'AW-CONVERSION_ID/QUIZ_START_LABEL'
-            });
-            
-            document.getElementById('landing').style.display = 'none';
-            document.getElementById('question1').classList.add('active');
-            currentQuestion = 1;
-            startTime = Date.now();
-            
-            // Initialize question timing tracking
-            window.questionStartTimes = {};
+            // Track question start time
+            if (!window.questionStartTimes) window.questionStartTimes = {};
             window.questionStartTimes[1] = Date.now();
         }
         
-        // Select option and move to next question
-        function selectOption(questionNum, value) {
-            const questionStartTime = window.questionStartTimes ? window.questionStartTimes[questionNum] : Date.now();
-            const responseTime = Date.now() - questionStartTime;
-            
-            // Visual feedback
-            const options = document.querySelectorAll(`#question${questionNum} .option`);
+        // Select option function
+        function selectOption(questionNum, answer) {
+            // Remove previous selections
+            const options = document.querySelectorAll(`#question-${questionNum} .option`);
             options.forEach(opt => opt.classList.remove('selected'));
-            event.target.classList.add('selected');
             
-            // Store answer
-            answers[questionNum - 1] = value;
+            // Add selection to clicked option
+            event.currentTarget.classList.add('selected');
             
-            // Neurological tracking
-            const discPrediction = predictNeurologicalType(value, responseTime);
+            // Store answer with response time
+            const endTime = Date.now();
+            const startTimeForQ = window.questionStartTimes?.[questionNum] || startTime;
+            const responseTime = endTime - startTimeForQ;
             
-            // Enhanced Analytics with neurological data
-            gtag('event', 'quiz_progress', {
-                'question_number': questionNum,
-                'answer': value,
-                'time_spent': Math.round((Date.now() - startTime) / 1000),
-                'response_time_ms': responseTime,
-                'neurological_prediction': discPrediction,
-                'answer_confidence': responseTime < 3000 ? 'high' : responseTime < 8000 ? 'medium' : 'low'
-            });
+            // Store answer with neurological prediction
+            answers[questionNum - 1] = {
+                question: questionNum,
+                answer: answer,
+                responseTime: responseTime,
+                neurological: predictNeurologicalType(answer, responseTime)
+            };
             
-            // Track neurological pattern
-            gtag('event', 'neurological_pattern', {
-                'predicted_neurotransmitter': discPrediction.neurotransmitter,
-                'response_speed_category': discPrediction.speedCategory,
-                'personality_indicator': value
-            });
+            // Enable continue button
+            const continueBtn = document.querySelector(`#question-${questionNum} .continue-button`);
+            continueBtn.disabled = false;
+            continueBtn.style.opacity = '1';
+        }
+        
+        // Next question function
+        function nextQuestion(questionNum) {
+            document.getElementById(`question-${questionNum}`).classList.remove('active');
             
-            // Move to next question after brief delay
-            setTimeout(() => {
-                document.getElementById(`question${questionNum}`).classList.remove('active');
-                
-                if (questionNum < 4) {
-                    document.getElementById(`question${questionNum + 1}`).classList.add('active');
-                    currentQuestion = questionNum + 1;
-                    // Track when next question starts
-                    if (!window.questionStartTimes) window.questionStartTimes = {};
-                    window.questionStartTimes[questionNum + 1] = Date.now();
-                } else {
-                    // Calculate result
-                    showResult();
-                }
-            }, 300);
+            if (questionNum < 4) {
+                document.getElementById(`question-${questionNum + 1}`).classList.add('active');
+                currentQuestion = questionNum + 1;
+                // Track when next question starts
+                if (!window.questionStartTimes) window.questionStartTimes = {};
+                window.questionStartTimes[questionNum + 1] = Date.now();
+            } else {
+                // Calculate result
+                showResult();
+            }
         }
         
         // Neurological prediction function
         function predictNeurologicalType(answer, responseTime) {
-            const neurotransmitters = {
-                'D': { neurotransmitter: 'adrenaline_testosterone', expectedTime: 2000 },
-                'I': { neurotransmitter: 'dopamine_oxytocin', expectedTime: 4000 },
-                'S': { neurotransmitter: 'serotonin', expectedTime: 6000 },
-                'C': { neurotransmitter: 'dopamine_competence', expectedTime: 5000 }
+            const typeExpectations = {
+                'D': { expectedTime: 3000, neurotransmitter: 'adrenaline_testosterone' },
+                'I': { expectedTime: 4500, neurotransmitter: 'dopamine_oxytocin' },
+                'S': { expectedTime: 7000, neurotransmitter: 'serotonin' },
+                'C': { expectedTime: 8500, neurotransmitter: 'dopamine_competence' }
             };
             
-            const predicted = neurotransmitters[answer];
-            const speedCategory = responseTime < 3000 ? 'fast' : responseTime < 6000 ? 'medium' : 'slow';
+            const predicted = typeExpectations[answer];
+            const speedCategory = responseTime < predicted.expectedTime ? 'fast' : 'deliberate';
             
             return {
+                expectedType: answer,
                 neurotransmitter: predicted.neurotransmitter,
+                responseTime: responseTime,
                 speedCategory: speedCategory,
                 expectedVsActual: responseTime / predicted.expectedTime
             };
@@ -1231,24 +1014,61 @@
             
             // Count answers
             answers.forEach(answer => {
-                scores[answer]++;
+                scores[answer.answer]++;
             });
             
-            // Find dominant type
-            let dominantType = Object.keys(scores).reduce((a, b) => 
-                scores[a] > scores[b] ? a : b
-            );
+            // Find dominant type with tie-breaker (D > I > C > S)
+            const hierarchy = ['D', 'I', 'C', 'S'];
+            let dominantType = 'D';
+            let maxScore = 0;
             
-            // Tie-breaker hierarchy: D > I > C > S
-            const maxScore = Math.max(...Object.values(scores));
-            const tied = Object.keys(scores).filter(type => scores[type] === maxScore);
+            hierarchy.forEach(type => {
+                if (scores[type] > maxScore) {
+                    maxScore = scores[type];
+                    dominantType = type;
+                } else if (scores[type] === maxScore && hierarchy.indexOf(type) < hierarchy.indexOf(dominantType)) {
+                    dominantType = type;
+                }
+            });
             
-            if (tied.length > 1) {
-                const hierarchy = ['D', 'I', 'C', 'S'];
-                dominantType = hierarchy.find(type => tied.includes(type));
-            }
+            // Calculate completion time
+            const completionTime = Math.round((Date.now() - startTime) / 1000);
             
-            // Define lead values and names by type
+            // Calculate average neurological metrics
+            const avgResponseTime = answers.reduce((sum, ans) => sum + ans.responseTime, 0) / answers.length;
+            const fastResponses = answers.filter(ans => ans.neurological.speedCategory === 'fast').length;
+            
+            // Track result in analytics
+            fbq('track', 'CompleteRegistration', {
+                content_name: 'DISC Quiz Completed',
+                personality_type: dominantType,
+                completion_time: completionTime,
+                avg_response_time: Math.round(avgResponseTime),
+                fast_responses: fastResponses,
+                value: 0,
+                currency: 'BRL'
+            });
+            
+            gtag('event', 'quiz_completion', {
+                'personality_type': dominantType,
+                'completion_time': completionTime,
+                'avg_response_time': Math.round(avgResponseTime),
+                'fast_responses_count': fastResponses
+            });
+            
+            gtag('event', 'conversion', {
+                'send_to': `${TRACKING_CONFIG.GOOGLE_ADS_ID}/QUIZ_COMPLETION_LABEL`,
+                'personality_type': dominantType
+            });
+            
+            // Show result
+            document.getElementById(`result-${dominantType}`).classList.add('active');
+            quizCompleted = true; // Disable exit prevention
+        }
+        
+        // Redirect to capture page function
+        function goToCapturePage(type) {
+            // Define lead data
             const leadData = {
                 'D': { name: 'Kit do Conquistador Musical', value: 25.00, neuro: 'adrenaline_testosterone' },
                 'I': { name: 'Guia do Conectado Musical', value: 22.00, neuro: 'dopamine_oxytocin' },
@@ -1256,120 +1076,43 @@
                 'C': { name: 'Sistema do Estrategista Musical', value: 30.00, neuro: 'dopamine_competence' }
             };
             
-            const currentLead = leadData[dominantType] || leadData['D'];
+            const currentLead = leadData[type] || leadData['D'];
             
-            // Facebook Pixel - Quiz Completed
-            fbq('track', 'CompleteRegistration', {
-                content_name: currentLead.name,
-                personality_type: dominantType,
+            // Add loading state to button
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'REDIRECIONANDO...';
+            button.disabled = true;
+            button.style.opacity = '0.7';
+            
+            // Track lead generation
+            fbq('track', 'Lead', {
+                content_name: currentLead.name + ' Result',
+                personality_type: type,
                 neurotransmitter: currentLead.neuro,
                 value: currentLead.value,
                 currency: 'BRL',
-                num_items: 1
+                event_source_url: window.location.href
             });
             
-            // Google Analytics
-            gtag('event', 'quiz_completed', {
-                'personality_type': dominantType,
-                'time_total': Math.round((Date.now() - startTime) / 1000),
-                'score_d': scores.D,
-                'score_i': scores.I,
-                'score_s': scores.S,
-                'score_c': scores.C,
+            gtag('event', 'lead_generation', {
+                'personality_type': type,
+                'result_type': type.toLowerCase(),
                 'lead_value': currentLead.value,
                 'neurotransmitter': currentLead.neuro
             });
             
-            // Google Ads - Quiz Completion
             gtag('event', 'conversion', {
-                'send_to': 'AW-CONVERSION_ID/QUIZ_COMPLETE_LABEL',
+                'send_to': `${TRACKING_CONFIG.GOOGLE_ADS_ID}/LEAD_GENERATION_LABEL`,
+                'personality_type': type,
                 'value': currentLead.value,
-                'currency': 'BRL',
-                'personality_type': dominantType
+                'currency': 'BRL'
             });
             
-            // Show result
-            document.getElementById(`result-${dominantType}`).classList.add('active');
-        }
-        
-        // Redirect to email capture - NOVA ESTRATÉGIA: EMAIL PRIMEIRO
-        function goToEmailCapture(type) {
-            console.log('🚀 goToEmailCapture chamado com tipo:', type);
-            
-            // Prevenir ação padrão
-            if (event) event.preventDefault();
-            
-            // Define lead data para tracking
-            const leadData = {
-                'conquistador': { name: 'Kit do Conquistador Musical', value: 25.00, neuro: 'adrenaline_testosterone' },
-                'conectado': { name: 'Guia do Conectado Musical', value: 22.00, neuro: 'dopamine_oxytocin' },
-                'construtor': { name: 'Plano do Construtor Musical', value: 28.00, neuro: 'serotonin' },
-                'estrategista': { name: 'Sistema do Estrategista Musical', value: 30.00, neuro: 'dopamine_competence' }
-            };
-            
-            const currentLead = leadData[type] || leadData['conquistador'];
-            console.log('📊 Lead data:', currentLead);
-            
-            // Tracking (não bloqueia o redirecionamento)
-            try {
-                // Facebook Pixel - InitiateCheckout (início do processo de captura)
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'InitiateCheckout', {
-                        content_name: currentLead.name + ' - Email Capture',
-                        personality_type: type,
-                        neurotransmitter: currentLead.neuro,
-                        value: currentLead.value,
-                        currency: 'BRL',
-                        event_source_url: window.location.href
-                    });
-                }
-                
-                // Google Analytics
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'email_capture_redirect', {
-                        'personality_type': type,
-                        'capture_page': `captura_${type}`,
-                        'lead_value': currentLead.value,
-                        'neurotransmitter': currentLead.neuro
-                    });
-                    
-                    // Google Ads - Begin Checkout
-                    gtag('event', 'begin_checkout', {
-                        'send_to': 'AW-CONVERSION_ID/CAPTURE_LABEL',
-                        'value': currentLead.value,
-                        'currency': 'BRL',
-                        'personality_type': type
-                    });
-                }
-            } catch (error) {
-                console.log('⚠️ Erro no tracking (não crítico):', error);
-            }
-            
-            // Redirect com delay para garantir tracking
-            console.log('⏰ Iniciando redirecionamento em 300ms...');
-            
-            setTimeout(function() {
-                // Redirect to email capture pages (NOVA ESTRATÉGIA)
-                const captureUrls = {
-                    'conquistador': './forms/alto-d-conquistador.html',
-                    'conectado': './forms/alto-i-conectado.html', 
-                    'construtor': './forms/alto-s-construtor.html',
-                    'estrategista': './forms/alto-c-estrategista.html'
-                };
-                
-                const url = captureUrls[type];
-                console.log('📧 Redirecionando para captura de email:', url);
-                console.log('📝 Tipo recebido:', type);
-                console.log('📋 URLs de captura disponíveis:', captureUrls);
-                
-                if (url) {
-                    console.log('✅ REDIRECIONANDO PARA CAPTURA:', url);
-                    window.location.href = url;
-                } else {
-                    console.log('❌ Tipo não encontrado, usando fallback');
-                    window.location.href = './forms/alto-d-conquistador.html';
-                }
-            }, 300);
+            // Redirect to capture page after short delay
+            setTimeout(() => {
+                window.location.href = CAPTURE_PAGES[type];
+            }, 1500);
         }
         
         // Facebook Pixel
@@ -1381,26 +1124,22 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', 'FACEBOOK_PIXEL_ID');
+        
+        fbq('init', TRACKING_CONFIG.FACEBOOK_PIXEL_ID);
         fbq('track', 'PageView');
-
-        // Google Analytics setup
+        
+        // Google Analytics
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-SXXB0S0NPL');
-        
-        // Google Ads Conversion Tracking
-        gtag('config', 'AW-CONVERSION_ID');
-        
-        // Page view tracking
-        gtag('event', 'page_view', {
-            'page_title': 'Quiz DISC Musical',
+        gtag('config', TRACKING_CONFIG.GOOGLE_ANALYTICS_ID, {
             'page_location': window.location.href
         });
+        
     </script>
     
-    <!-- Google Analytics (replace with your tracking code) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXXB0S0NPL"></script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEUCODIGO123"></script>
+
 </body>
 </html>
